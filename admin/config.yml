@@ -1,0 +1,49 @@
+backend:
+  name: github
+  repo: wallyrebel/MississippiNewsGroup
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+# Media files stored here
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Site URL for preview
+site_url: https://mississippinewsgroup.com
+
+collections:
+  # Articles Collection
+  - name: "articles"
+    label: "Articles"
+    folder: "content/articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Short description shown in the feed (140 chars max)" }
+      - { label: "Site Name", name: "site", widget: "string", default: "Mississippi News Group", hint: "Shows as the badge in the feed" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Ads Collection
+  - name: "ads"
+    label: "Advertisements"
+    folder: "content/ads"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ad Name", name: "title", widget: "string" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Link URL", name: "link", widget: "string" }
+      - { label: "Start Date", name: "startDate", widget: "datetime" }
+      - { label: "End Date", name: "endDate", widget: "datetime" }
+      - label: "Position"
+        name: "position"
+        widget: "select"
+        options:
+          - { label: "Inline (in feed every 6 articles)", value: "inline" }
+          - { label: "Sidebar", value: "sidebar" }
+          - { label: "Banner (top of page)", value: "banner" }
+      - { label: "Alt Text", name: "alt", widget: "string", required: false, hint: "Accessibility text for the image" }

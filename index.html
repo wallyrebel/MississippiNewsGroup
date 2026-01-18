@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mississippi News Group</title>
+  <meta name="description" content="Mississippi News Group - latest local news and sports across Mississippi." />
+  <meta property="og:title" content="Mississippi News Group" />
+  <meta property="og:description"
+    content="Browse the newest headlines from across our network of local news and sports sites." />
+  <meta property="og:image" content="/assets/logo-1024.png" />
+  <link rel="icon" href="/assets/logo-256.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#">
+        <img class="logo" src="/assets/logo-256.png" srcset="/assets/logo-256.png 256w, /assets/logo-512.png 512w"
+          alt="Mississippi News Group logo" />
+        <div class="brand-text">
+          <div class="brand-name">Mississippi News Group</div>
+          <div class="brand-tag">News + Sports across Mississippi</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#latest">Home</a>
+        <a href="#sites">Our Sites</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <a class="cta" href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+  </header>
+
+  <div id="menuOverlay" class="menu-overlay" hidden></div>
+  <div id="mobileMenu" class="mobile-menu" hidden>
+    <div class="mobile-menu-inner">
+      <div class="mobile-menu-head">
+        <div class="mobile-menu-title">Menu</div>
+        <button id="menuClose" class="menu-close" type="button" aria-label="Close menu">✕</button>
+      </div>
+      <nav class="mobile-nav">
+        <a href="#latest">Home</a>
+        <a href="#sites">Our Sites</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact">Contact</a>
+        <a href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Subscribe</a>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <h1>Your Source for Mississippi News</h1>
+          <p>Bringing you the latest local news and sports from across the Magnolia State — powered by 17 community
+            publications.</p>
+
+          <div class="quicklinks" id="quicklinks"></div>
+
+          <div class="hero-kpis">
+            <div class="kpi">
+              <div class="kpi-num">17</div>
+              <div class="kpi-label">Websites</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">1M+</div>
+              <div class="kpi-label">Page views / month</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">600K+</div>
+              <div class="kpi-label">Social followers</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-num">25M+</div>
+              <div class="kpi-label">Monthly social reach</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="latest" class="section wrap">
+      <div class="section-head">
+        <div>
+          <h2>Latest news across our network</h2>
+          <div class="sub">Most recent stories with featured images, newest first.</div>
+        </div>
+        <div class="controls">
+          <input id="search" type="search" placeholder="Search headlines…" autocomplete="off" />
+          <select id="siteFilter">
+            <option value="all">All sites</option>
+          </select>
+          <button id="refresh" class="btn" type="button">Refresh</button>
+        </div>
+      </div>
+
+      <!-- Banner ad placement -->
+      <div id="bannerAd"></div>
+
+      <div id="status" class="status" role="status" aria-live="polite">Loading the latest stories…</div>
+
+      <div class="content-wrapper">
+        <div class="main-content">
+          <div id="grid" class="grid" aria-live="polite"></div>
+          <div class="note">Showing up to <span id="count">0</span> of the most recent posts across the network.</div>
+        </div>
+        <aside class="sidebar" id="sidebar">
+          <!-- Sidebar ads will be inserted here -->
+        </aside>
+      </div>
+    </section>
+
+    <section id="advertise" class="band">
+      <div class="wrap band-inner">
+        <div class="band-copy">
+          <h2>Advertise with us</h2>
+          <p>
+            Mississippi News Group was founded in 2013. We publish 17 websites, generate over 1 million page views per
+            month,
+            and have over 600,000 social media followers with an aggregate reach of over 25 million monthly on social
+            media.
+          </p>
+          <ul class="bullets">
+            <li>Network-wide display + county-focused packages</li>
+            <li>Sponsored content + native placements</li>
+            <li>Social media amplification and video opportunities</li>
+          </ul>
+          <a class="btn btn-gold" href="#contact">Request advertiser info</a>
+        </div>
+        <div class="band-card">
+          <div class="band-card-title">Fast facts</div>
+          <div class="facts">
+            <div class="fact"><span>Founded</span><strong>2013</strong></div>
+            <div class="fact"><span>Websites</span><strong>17</strong></div>
+            <div class="fact"><span>Monthly page views</span><strong>1M+</strong></div>
+            <div class="fact"><span>Social followers</span><strong>600K+</strong></div>
+            <div class="fact"><span>Monthly social reach</span><strong>25M+</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sites" class="section wrap">
+      <div class="section-head">
+        <div>
+          <h2>Our websites</h2>
+          <div class="sub">Visit any publication in the Mississippi News Group network.</div>
+        </div>
+      </div>
+      <div id="sitesGrid" class="sites"></div>
+    </section>
+
+    <section id="contact" class="section wrap">
+      <div class="section-head">
+        <div>
+          <h2>Get in touch</h2>
+          <div class="sub">Send a message to Mississippi News Group.</div>
+        </div>
+      </div>
+
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label>Don’t fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="form-row">
+          <label>
+            Your email
+            <input name="email" type="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Reason
+            <select name="reason" required>
+              <option value="General">General</option>
+              <option value="Advertising">Advertising</option>
+              <option value="Editorial">Editorial</option>
+              <option value="Technical">Technical</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Message
+          <textarea name="message" placeholder="How can we help?" rows="7" required></textarea>
+        </label>
+
+        <button class="btn btn-primary" type="submit">Send message</button>
+        <p class="fine">After launch, route submissions to <strong>myersgrouponline@gmail.com</strong> in Netlify →
+          Forms → Notifications.</p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div>© 2026 Mississippi News Group • <a href="https://mississippinewsgroup.com">mississippinewsgroup.com</a>
+        </div>
+        <div class="fine">Static hub + serverless RSS merge. Built for speed.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>

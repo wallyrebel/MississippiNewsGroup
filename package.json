@@ -1,0 +1,11 @@
+{
+  "name": "mississippinewsgroup-hub",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static hub site + Netlify Function to merge RSS feeds",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "node-fetch": "^2.6.12",
+    "rss-parser": "^3.13.0"
+  }
+}

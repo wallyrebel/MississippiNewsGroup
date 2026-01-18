@@ -1,0 +1,10 @@
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
+  included_files = ["content/**"]
+
+# Redirect for admin panel
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
