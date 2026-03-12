@@ -361,6 +361,11 @@ async function loadHiring() {
     hiringMobileLink?.addEventListener("click", openModal);
     hiringClose?.addEventListener("click", () => setHiringModal(false));
     hiringOverlay?.addEventListener("click", () => setHiringModal(false));
+
+    // Auto-open if URL has #hiring
+    if (window.location.hash === "#hiring") {
+      setHiringModal(true);
+    }
   } catch (e) {
     console.warn("Could not load hiring data:", e);
   }

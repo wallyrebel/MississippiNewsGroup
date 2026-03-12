@@ -8,3 +8,9 @@
   from = "/admin"
   to = "/admin/index.html"
   status = 200
+
+# Clean URL for hiring modal
+[[redirects]]
+  from = "/hiring"
+  to = "/#hiring"
+  status = 302
