@@ -257,8 +257,123 @@ function wireUp() {
   els.refresh?.addEventListener("click", () => loadLatest());
 }
 
+// ------ Now Hiring ------
+const hiringNavLink = document.getElementById("hiringNavLink");
+const hiringMobileLink = document.getElementById("hiringMobileLink");
+const hiringOverlay = document.getElementById("hiringOverlay");
+const hiringModal = document.getElementById("hiringModal");
+const hiringClose = document.getElementById("hiringClose");
+const hiringContent = document.getElementById("hiringContent");
+
+function setHiringModal(open) {
+  if (!hiringModal || !hiringOverlay) return;
+  hiringModal.hidden = !open;
+  hiringOverlay.hidden = !open;
+  document.documentElement.style.overflow = open ? "hidden" : "";
+}
+
+function renderHiringPositions(positions) {
+  if (!hiringContent || !positions.length) return;
+  hiringContent.innerHTML = positions
+    .map(
+      (pos) => `
+    <div class="job-card">
+      <div class="job-title">${escapeHtml(pos.title)}</div>
+      <div class="job-meta">
+        <span class="job-tag">📍 ${escapeHtml(pos.location)}</span>
+        ${pos.type ? `<span class="job-tag">${escapeHtml(pos.type)}</span>` : ""}
+      </div>
+      <div class="job-desc">${(pos.description || "")
+        .split("\n")
+        .map((p) => `<p>${escapeHtml(p)}</p>`)
+        .join("")}</div>
+      ${
+        pos.about
+          ? `<div class="job-desc">${pos.about
+              .split("\n")
+              .filter((p) => p.trim())
+              .map((p) => `<p>${escapeHtml(p)}</p>`)
+              .join("")}</div>`
+          : ""
+      }
+      ${
+        pos.responsibilities
+          ? `<div class="job-section-title">What You'll Do</div>
+             <ul class="job-list">${pos.responsibilities.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`
+          : ""
+      }
+      ${
+        pos.qualifications
+          ? `<div class="job-section-title">What We're Looking For</div>
+             <ul class="job-list">${pos.qualifications.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul>`
+          : ""
+      }
+      ${
+        pos.requirements
+          ? `<div class="job-section-title">Requirements</div>
+             <ul class="job-list">${pos.requirements.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`
+          : ""
+      }
+      ${
+        pos.benefits
+          ? `<div class="job-section-title">What We Offer</div>
+             <ul class="job-list">${pos.benefits.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+          : ""
+      }
+      ${
+        pos.applyEmail
+          ? `<div class="job-apply">
+               <div class="job-apply-title">How to Apply</div>
+               <a class="job-apply-email" href="mailto:${escapeHtml(pos.applyEmail)}">
+                 ✉️ ${escapeHtml(pos.applyEmail)}
+               </a>
+               ${pos.applyNote ? `<div class="job-apply-note">${escapeHtml(pos.applyNote)}</div>` : ""}
+             </div>`
+          : ""
+      }
+    </div>
+  `
+    )
+    .join("");
+}
+
+async function loadHiring() {
+  try {
+    const res = await fetch("/content/hiring.json", { cache: "no-store" });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.enabled || !data.positions || !data.positions.length) return;
+
+    // Show nav links
+    if (hiringNavLink) hiringNavLink.hidden = false;
+    if (hiringMobileLink) hiringMobileLink.hidden = false;
+
+    // Render positions
+    renderHiringPositions(data.positions);
+
+    // Wire up open/close
+    const openModal = (e) => {
+      e.preventDefault();
+      setMenu(false);
+      setHiringModal(true);
+    };
+    hiringNavLink?.addEventListener("click", openModal);
+    hiringMobileLink?.addEventListener("click", openModal);
+    hiringClose?.addEventListener("click", () => setHiringModal(false));
+    hiringOverlay?.addEventListener("click", () => setHiringModal(false));
+  } catch (e) {
+    console.warn("Could not load hiring data:", e);
+  }
+}
+
+// Close hiring modal on Escape (extend existing handler)
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") setHiringModal(false);
+});
+
 // ------ Initialise ------
 renderSites();
 wireUp();
 loadAds();
 loadLatest();
+loadHiring();

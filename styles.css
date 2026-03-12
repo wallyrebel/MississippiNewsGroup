@@ -1004,6 +1004,230 @@ label {
 .footer a:hover { color: var(--gold); }
 
 /* ============================================================
+   NOW HIRING — Nav Badge + Modal
+   ============================================================ */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .5; transform: scale(1.6); }
+}
+
+/* Desktop nav link */
+.hiring-nav-link {
+  color: var(--gold) !important;
+  font-weight: 800 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.hiring-nav-link:hover { color: var(--gold-light) !important; }
+
+.hiring-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* Mobile nav link */
+.hiring-mobile-link {
+  background: linear-gradient(135deg, rgba(245,158,11,.12), rgba(245,158,11,.06)) !important;
+  border-color: rgba(245,158,11,.3) !important;
+  color: var(--gold-light) !important;
+  font-weight: 800 !important;
+}
+
+/* Overlay */
+.hiring-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  animation: fadeIn .2s ease;
+}
+
+/* Modal */
+.hiring-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 210;
+  width: 92vw;
+  max-width: 700px;
+  max-height: 85vh;
+  background: var(--panel);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-xl), 0 0 60px rgba(245,158,11,.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp .35s var(--ease);
+}
+
+.hiring-modal[hidden],
+.hiring-overlay[hidden] {
+  display: none !important;
+}
+
+.hiring-modal-inner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hiring-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1.5px solid var(--line);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.hiring-modal-title {
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--ink);
+  letter-spacing: -.2px;
+}
+
+.hiring-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration);
+}
+
+.hiring-close:hover {
+  background: #f1f5f9;
+  color: var(--ink);
+  border-color: var(--sky);
+}
+
+.hiring-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Job card inside modal */
+.job-card {
+  background: linear-gradient(135deg, rgba(12,45,90,.03), rgba(245,158,11,.03));
+  border: 1.5px solid var(--line);
+  border-radius: var(--r);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.job-card:last-child { margin-bottom: 0; }
+
+.job-title {
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--navy);
+  margin: 0 0 6px;
+  letter-spacing: -.2px;
+}
+
+.job-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.job-tag {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(245,158,11,.25);
+  color: #92400e;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+
+.job-desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.job-desc p { margin: 0 0 10px; }
+.job-desc p:last-child { margin: 0; }
+
+.job-section-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+  margin: 18px 0 8px;
+  letter-spacing: -.1px;
+}
+
+.job-list {
+  margin: 0 0 0 16px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.job-list li { margin: 4px 0; }
+
+.job-apply {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(12,45,90,.04), rgba(12,45,90,.08));
+  border: 1px solid rgba(12,45,90,.10);
+}
+
+.job-apply-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.job-apply-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--navy);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+.job-apply-email:hover { color: var(--sky); }
+
+.job-apply-note {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ============================================================
    RESPONSIVE DESIGN
    ============================================================ */
 @media (max-width: 1024px) {

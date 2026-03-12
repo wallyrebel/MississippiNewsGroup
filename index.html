@@ -83,6 +83,7 @@
         <a href="#sites">Our Sites</a>
         <a href="#advertise">Advertise</a>
         <a href="#contact">Contact</a>
+        <a href="#" id="hiringNavLink" class="hiring-nav-link" hidden>Now Hiring <span class="hiring-dot"></span></a>
       </nav>
 
       <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="mobileMenu"
@@ -107,6 +108,7 @@
         <a href="#advertise">Advertise</a>
         <a href="#contact">Contact</a>
         <a href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Subscribe</a>
+        <a href="#" id="hiringMobileLink" class="hiring-mobile-link" hidden>🔥 Now Hiring</a>
       </nav>
     </div>
   </div>
@@ -263,6 +265,20 @@
       </div>
     </footer>
   </main>
+
+  <!-- Hiring Modal -->
+  <div id="hiringOverlay" class="hiring-overlay" hidden></div>
+  <div id="hiringModal" class="hiring-modal" hidden>
+    <div class="hiring-modal-inner">
+      <div class="hiring-modal-head">
+        <div class="hiring-modal-title">🔥 Now Hiring</div>
+        <button id="hiringClose" class="hiring-close" type="button" aria-label="Close hiring modal">✕</button>
+      </div>
+      <div id="hiringContent" class="hiring-content">
+        <!-- Positions loaded from hiring.json via JS -->
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="app.js"></script>
 </body>
