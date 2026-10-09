@@ -34,6 +34,28 @@ test('camera priority matches exact county / SAME codes, not similarly named cou
 test('24 cities are all assigned to exactly one north-to-coast region',()=>{
  assert.equal(config.cities.length,24);const ids=config.regions.flatMap(r=>r.cities);assert.equal(new Set(ids).size,24);assert.deepEqual([...ids].sort(),config.cities.map(c=>c.id).sort());
 });
+test('regional radar fits every city and WMS pixels align with Mercator overlays',()=>{
+ const R=require('../weather/radar-map');
+ for(const region of config.regions){
+  const scene=R.scenes(config).find(s=>s.id===region.id);
+  for(const aspect of [1.35,2.65]){
+   const v=R.view(scene,aspect);
+   assert.ok(Math.abs(v.width/v.height-aspect)<1e-9);
+   for(const city of config.cities.filter(c=>region.cities.includes(c.id))){
+    const [x,y]=R.xy([city.lon,city.lat]),[mx,my]=R.merc([city.lon,city.lat]);
+    assert.ok(x>v.x&&x<v.x+v.width&&y>v.y&&y<v.y+v.height,`${city.name} inside ${region.id}`);
+    assert.ok(Math.abs((x-v.x)/v.width-(mx-v.bbox[0])/(v.bbox[2]-v.bbox[0]))<1e-9);
+    assert.ok(Math.abs((y-v.y)/v.height-(v.bbox[3]-my)/(v.bbox[3]-v.bbox[1]))<1e-9);
+   }
+  }
+ }
+});
+test('broadcast includes all screen types and suppresses cameras during immediate warnings',()=>{
+ assert.deepEqual(M.showSequence([],true),['radar','warnings','camera','radar','watches','forecast']);
+ assert.ok(!M.showSequence([],false).includes('camera'));
+ for(const event of ['Tornado Warning','Flash Flood Warning'])assert.deepEqual(M.showSequence([{event}],true),['warnings','radar']);
+ assert.ok(M.showSequence([{event:'Flood Watch'}],true).includes('camera'));
+});
 test('function rejects unknown city, resource, method and foreign upstream URL',async()=>{
  assert.equal((await handler({queryStringParameters:{kind:'forecast',city:'not-ms'}})).statusCode,400);
  assert.equal((await handler({queryStringParameters:{kind:'other'}})).statusCode,400);

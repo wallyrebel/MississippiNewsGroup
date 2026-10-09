@@ -11,6 +11,10 @@
     const watches=alerts.filter(a=>/Watch/.test(a.event));
     return immediate.length?immediate:warnings.length?warnings:watches.length?watches:alerts;
   }
+  function showSequence(alerts, camerasEnabled=true) {
+    if (alerts.some(a=>priority(a)<=1)) return ['warnings','radar'];
+    return ['radar','warnings',...(camerasEnabled?['camera']:[]),'radar','watches','forecast'];
+  }
   function normalizeAlerts(data, now = Date.now()) {
     if (!Array.isArray(data.features)) throw new Error('Invalid NWS alerts response');
     return data.features.filter(f => {
@@ -65,5 +69,5 @@
     const matches = alerts.filter(a => (a.geocode?.SAME || []).some(s => String(s).slice(-5)===camera.countyFips) || (county && (a.areaDesc || '').split(';').some(area => area.trim().replace(/ County$/i,'').toLowerCase()===county)));
     return matches.length ? 100 - Math.min(...matches.map(priority)) : 0;
   }
-  return {priority,alertColor,spotlightAlerts,normalizeAlerts,activeAlerts,parseRadarTimes,forecastDays,cameraScore};
+  return {priority,alertColor,spotlightAlerts,showSequence,normalizeAlerts,activeAlerts,parseRadarTimes,forecastDays,cameraScore};
 });
