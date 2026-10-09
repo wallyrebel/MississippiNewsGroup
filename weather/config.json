@@ -1,0 +1,37 @@
+{
+  "regions": [
+    {"id":"north","name":"North Mississippi","short":"North","cities":["southaven","oxford","tupelo","corinth"]},
+    {"id":"delta","name":"The Delta","short":"Delta","cities":["clarksdale","cleveland","greenville","greenwood"]},
+    {"id":"central","name":"Central Mississippi","short":"Central","cities":["jackson","vicksburg","kosciusko"]},
+    {"id":"east","name":"East Mississippi","short":"East","cities":["starkville","columbus","meridian"]},
+    {"id":"southwest","name":"Southwest Mississippi","short":"Southwest","cities":["natchez","brookhaven","mccomb"]},
+    {"id":"pinebelt","name":"The Pine Belt","short":"Pine Belt","cities":["hattiesburg","laurel","picayune"]},
+    {"id":"coast","name":"Mississippi Gulf Coast","short":"Gulf Coast","cities":["bay-st-louis","gulfport","biloxi","pascagoula"]}
+  ],
+  "cities": [
+    {"id":"southaven","name":"Southaven","lat":34.989,"lon":-90.0126,"county":"DeSoto"},
+    {"id":"oxford","name":"Oxford","lat":34.3665,"lon":-89.5192,"county":"Lafayette"},
+    {"id":"tupelo","name":"Tupelo","lat":34.2576,"lon":-88.7034,"county":"Lee"},
+    {"id":"corinth","name":"Corinth","lat":34.9343,"lon":-88.5223,"county":"Alcorn"},
+    {"id":"clarksdale","name":"Clarksdale","lat":34.2001,"lon":-90.5709,"county":"Coahoma"},
+    {"id":"cleveland","name":"Cleveland","lat":33.744,"lon":-90.7248,"county":"Bolivar"},
+    {"id":"greenville","name":"Greenville","lat":33.40898,"lon":-91.0598,"county":"Washington"},
+    {"id":"greenwood","name":"Greenwood","lat":33.5162,"lon":-90.1795,"county":"Leflore"},
+    {"id":"jackson","name":"Jackson","lat":32.2988,"lon":-90.1848,"county":"Hinds"},
+    {"id":"vicksburg","name":"Vicksburg","lat":32.3526,"lon":-90.8779,"county":"Warren"},
+    {"id":"kosciusko","name":"Kosciusko","lat":33.0576,"lon":-89.5876,"county":"Attala"},
+    {"id":"starkville","name":"Starkville","lat":33.4504,"lon":-88.8184,"county":"Oktibbeha"},
+    {"id":"columbus","name":"Columbus","lat":33.4957,"lon":-88.4273,"county":"Lowndes"},
+    {"id":"meridian","name":"Meridian","lat":32.3643,"lon":-88.7037,"county":"Lauderdale"},
+    {"id":"natchez","name":"Natchez","lat":31.5604,"lon":-91.4032,"county":"Adams"},
+    {"id":"brookhaven","name":"Brookhaven","lat":31.5791,"lon":-90.4407,"county":"Lincoln"},
+    {"id":"mccomb","name":"McComb","lat":31.2438,"lon":-90.4532,"county":"Pike"},
+    {"id":"hattiesburg","name":"Hattiesburg","lat":31.3271,"lon":-89.2903,"county":"Forrest"},
+    {"id":"laurel","name":"Laurel","lat":31.6941,"lon":-89.1306,"county":"Jones"},
+    {"id":"picayune","name":"Picayune","lat":30.5255,"lon":-89.6779,"county":"Pearl River"},
+    {"id":"bay-st-louis","name":"Bay St. Louis","lat":30.3088,"lon":-89.3300,"county":"Hancock"},
+    {"id":"gulfport","name":"Gulfport","lat":30.3674,"lon":-89.0928,"county":"Harrison"},
+    {"id":"biloxi","name":"Biloxi","lat":30.396,"lon":-88.8853,"county":"Harrison"},
+    {"id":"pascagoula","name":"Pascagoula","lat":30.3658,"lon":-88.5561,"county":"Jackson"}
+  ]
+}

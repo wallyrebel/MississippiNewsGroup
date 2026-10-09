@@ -1,0 +1,92 @@
+[
+  {
+    "type": "image",
+    "url": "https://streamingshvn1.mdottraffic.com/thumbnail?application=rtplive&streamname=040105.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "DeSoto",
+    "name": "Southaven · I-55 at Church Rd",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=20",
+    "site": 20,
+    "countyFips": "28033"
+  },
+  {
+    "type": "image",
+    "url": "https://streamingjxn4.mdottraffic.com/thumbnail?application=rtplive&streamname=021905.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Lee",
+    "name": "Tupelo · I-22 at US 45",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=343",
+    "site": 343,
+    "countyFips": "28081"
+  },
+  {
+    "type": "image",
+    "url": "https://streamingjxn6.mdottraffic.com/thumbnail?application=rtplive&streamname=140204.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Washington",
+    "name": "Greenville · US 82 at Mississippi River",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=490",
+    "site": 490,
+    "countyFips": "28151"
+  },
+  {
+    "type": "image",
+    "url": "https://streamingjxn1.mdottraffic.com/thumbnail?application=rtplive&streamname=010406.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Hinds",
+    "name": "Jackson · I-55 at Lakeland Dr",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=1",
+    "site": 1,
+    "countyFips": "28049"
+  },
+  {
+    "type": "image",
+    "url": "https://streamingjxn6.mdottraffic.com/thumbnail?application=rtplive&streamname=130103.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Warren",
+    "name": "Vicksburg · I-20 at Mississippi River",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=189",
+    "site": 189,
+    "countyFips": "28149"
+  },
+  {
+    "type": "image",
+    "url": "https://streamingjxn6.mdottraffic.com/thumbnail?application=rtplive&streamname=120103.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Adams",
+    "name": "Natchez · US 84 at Mississippi River",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=104",
+    "site": 104,
+    "countyFips": "28001"
+  },
+  {
+    "type": "image",
+    "url": "https://streaminghat1.mdottraffic.com/thumbnail?application=rtplive&streamname=030207.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Forrest",
+    "name": "Hattiesburg · I-59 at Hardy St",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=65",
+    "site": 65,
+    "countyFips": "28035"
+  },
+  {
+    "type": "image",
+    "url": "https://streaminglym3.mdottraffic.com/thumbnail?application=rtplive&streamname=051706.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Harrison",
+    "name": "Gulfport · I-10 at MS 605",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=23",
+    "site": 23,
+    "countyFips": "28047"
+  },
+  {
+    "type": "image",
+    "url": "https://streaminglym2.mdottraffic.com/thumbnail?application=rtplive&streamname=050303.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Harrison",
+    "name": "Biloxi · US 90 at I-110",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=75",
+    "site": 75,
+    "countyFips": "28047"
+  },
+  {
+    "type": "image",
+    "url": "https://streaminglym1.mdottraffic.com/thumbnail?application=rtplive&streamname=051108.stream&size=352x240&format=jpg&fitmode=stretch",
+    "county": "Jackson",
+    "name": "Pascagoula · I-10 at Pascagoula River",
+    "source": "https://www.mdottraffic.com/mapbubbles/camerasite.aspx?site=237",
+    "site": 237,
+    "countyFips": "28059"
+  }
+]

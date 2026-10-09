@@ -14,3 +14,26 @@
   from = "/hiring"
   to = "/#hiring"
   status = 302
+
+# Dedicated weather page and cache policy. Weather JSON uses per-feed function TTLs.
+[[redirects]]
+  from = "/weather/live"
+  to = "/weather/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/weather"
+  to = "/weather/index.html"
+  status = 200
+
+[[headers]]
+  for = "/weather/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/weather"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
