@@ -10,14 +10,14 @@ body.broadcast{height:100vh;overflow:hidden;display:grid;place-items:center;back
 body.broadcast .masthead{height:5.3cqw}
 body.broadcast .dashboard{height:33.2cqw}
 body.broadcast .days{height:8.3cqw}
-body.broadcast .sidebar{display:grid;grid-template-rows:16.6cqw 8.5cqw minmax(0,1fr)}
+body.broadcast .sidebar{display:grid;grid-template-rows:17.1cqw 9cqw minmax(0,1fr)}
 body.broadcast .local-forecast,body.broadcast .camera-panel{grid-row:1;grid-column:1}
 body.broadcast .alerts-panel{grid-row:2;grid-column:1}
 body.broadcast .region-panel{grid-row:3;grid-column:1}
 body.broadcast .board-footer{height:.94cqw}
-body.broadcast .region-panel{padding:.4cqw .85cqw}
+body.broadcast .region-panel{padding:.3cqw .85cqw}
 body.broadcast .region-row{padding:.1cqw 0;line-height:1.1}
-body.broadcast .region-row .row-temp{font-size:.9cqw;line-height:1.1}
+body.broadcast .region-row .row-temp{font-size:.8cqw;line-height:1.1}
 body.broadcast .weather-metrics{margin-top:.2cqw;padding-top:.3cqw}
 body.broadcast .source-note{margin-top:.35cqw}
 body.broadcast #hero-summary{font-size:.78cqw;min-height:1.25cqw}
