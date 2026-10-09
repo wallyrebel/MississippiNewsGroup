@@ -5,6 +5,12 @@
   const priorities = {'Tornado Warning':0,'Flash Flood Warning':1,'Hurricane Warning':2,'Storm Surge Warning':3,'Severe Thunderstorm Warning':4,'Tropical Storm Warning':5,'Tornado Watch':6,'Severe Thunderstorm Watch':7};
   function priority(a) { return priorities[a.event] ?? (/Warning/.test(a.event) ? 8 : /Watch/.test(a.event) ? 9 : 10); }
   function alertColor(a) { return /Tornado Warning/.test(a.event) ? '#ff4b67' : /Warning/.test(a.event) ? '#ff8155' : /Watch/.test(a.event) ? '#ffc857' : '#6bc9ff'; }
+  function spotlightAlerts(alerts) {
+    const immediate=alerts.filter(a=>priority(a)<=1);
+    const warnings=alerts.filter(a=>/Warning/.test(a.event));
+    const watches=alerts.filter(a=>/Watch/.test(a.event));
+    return immediate.length?immediate:warnings.length?warnings:watches.length?watches:alerts;
+  }
   function normalizeAlerts(data, now = Date.now()) {
     if (!Array.isArray(data.features)) throw new Error('Invalid NWS alerts response');
     return data.features.filter(f => {
@@ -59,5 +65,5 @@
     const matches = alerts.filter(a => (a.geocode?.SAME || []).some(s => String(s).slice(-5)===camera.countyFips) || (county && (a.areaDesc || '').split(';').some(area => area.trim().replace(/ County$/i,'').toLowerCase()===county)));
     return matches.length ? 100 - Math.min(...matches.map(priority)) : 0;
   }
-  return {priority,alertColor,normalizeAlerts,activeAlerts,parseRadarTimes,forecastDays,cameraScore};
+  return {priority,alertColor,spotlightAlerts,normalizeAlerts,activeAlerts,parseRadarTimes,forecastDays,cameraScore};
 });

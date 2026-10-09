@@ -136,13 +136,13 @@
   }
   function alertsStale(){return !state.alertsAt||state.alertsFailed||age(state.alertsAt)>150000;}
   let spotlight=0;
-  async function refreshAlerts(){try{const result=await api('alerts');state.alerts=M.activeAlerts(result.data);state.alertsAt=result.fetchedAt;state.alertsFailed=result.stale;}catch{state.alertsFailed=true;}renderAlerts();renderAlertMap();renderHealth();}
+  async function refreshAlerts(){try{const result=await api('alerts');const previousTop=M.spotlightAlerts(state.alerts)[0]?.id;state.alerts=M.activeAlerts(result.data);if(M.spotlightAlerts(state.alerts)[0]?.id!==previousTop)spotlight=0;state.alertsAt=result.fetchedAt;state.alertsFailed=result.stale;}catch{state.alertsFailed=true;}renderAlerts();renderAlertMap();renderHealth();}
   function renderAlerts(){
-    state.alerts=M.activeAlerts(state.alerts);const stale=alertsStale(),alert=state.alerts[spotlight%Math.max(1,state.alerts.length)];
+    state.alerts=M.activeAlerts(state.alerts);const stale=alertsStale(),featured=M.spotlightAlerts(state.alerts),alert=featured[spotlight%Math.max(1,featured.length)];
     $('alert-count').textContent=state.alertsAt?String(state.alerts.length):'—';
     $('alert-status').textContent=`${stale?'DELAYED · ':''}${state.alertsAt?`Checked ${time(state.alertsAt)}`:'NWS alert feed unavailable'}`;
     const spot=$('alert-spotlight');
-    if(alert){spot.style.borderColor=M.alertColor(alert);spot.innerHTML=`<strong>${stale?'LAST RECEIVED · ':''}${esc(alert.event)}</strong><p>${esc(alert.areaDesc)}</p><span class="expires">Until ${esc(expiry(alert.ends||alert.expires))} · ${spotlight%state.alerts.length+1} of ${state.alerts.length}</span>`;}
+    if(alert){spot.style.borderColor=M.alertColor(alert);spot.innerHTML=`<strong>${stale?'LAST RECEIVED · ':''}${esc(alert.event)}</strong><p>${esc(alert.areaDesc)}</p><span class="expires">Until ${esc(expiry(alert.ends||alert.expires))} · ${spotlight%featured.length+1} of ${featured.length} priority alerts</span>`;}
     else{spot.style.borderColor=stale?'#ffc857':'#68d5b0';spot.textContent=stale?'Alert status unavailable. Check weather.gov for current warnings.':'No active NWS alerts for Mississippi.';}
     const ticker=state.alerts.length?state.alerts.map(a=>`${a.event.toUpperCase()} — ${a.areaDesc} · Until ${expiry(a.ends||a.expires)}`).join('     •     '):'No active NWS alerts for Mississippi. Regional forecasts rotate automatically, from the Delta to the Coast.';
     const message=stale?`ALERT FEED DELAYED — Check weather.gov for current warnings. ${state.alerts.length?'Last received: '+ticker:''}`:ticker;

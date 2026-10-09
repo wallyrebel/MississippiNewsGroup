@@ -11,6 +11,11 @@ test('excludes test, future, cancelled, expired and ended alerts; prioritizes to
  assert.equal(M.activeAlerts(result,Date.parse('2026-10-09T21:00:00Z')).length,0);
 });
 test('bad alert response must not become an all-clear',()=>assert.throws(()=>M.normalizeAlerts({})));
+test('immediate warnings stay in the spotlight ahead of watches and statements',()=>{
+ const alerts=[{event:'Flood Watch'},{event:'Tornado Warning'},{event:'Flash Flood Warning'},{event:'Severe Thunderstorm Warning'},{event:'Tropical Cyclone Local Statement'}];
+ assert.deepEqual(M.spotlightAlerts(alerts).map(a=>a.event),['Tornado Warning','Flash Flood Warning']);
+ assert.deepEqual(M.spotlightAlerts(alerts.filter(a=>!['Tornado Warning','Flash Flood Warning'].includes(a.event))).map(a=>a.event),['Severe Thunderstorm Warning']);
+});
 test('radar uses advertised scans including the newest, accepts interval metadata',()=>{
  const times=M.parseRadarTimes('<Dimension name="time">2026-10-09T17:00:00Z/2026-10-09T18:00:00Z/PT2M</Dimension>');
  assert.equal(times.at(-1),'2026-10-09T18:00:00.000Z');assert.ok(times.length<=12);
