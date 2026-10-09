@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mississippi Live Weather | Mississippi News Group</title>
+  <meta name="description" content="Automatic statewide Mississippi radar, National Weather Service warnings, watches and seven-day forecasts, from the Delta to the Gulf Coast.">
+  <link rel="canonical" href="https://mississippinewsgroup.com/weather">
+  <link rel="icon" href="/assets/logo-256.png">
+  <link rel="stylesheet" href="/weather/weather.css">
+  <script src="/weather/model.js" defer></script><script src="/weather/weather.js" defer></script>
+</head>
+<body>
+  <div class="page-tools"><a href="/">← Mississippi News Group</a><span>Statewide weather, around the clock</span><a href="/weather/live">Open broadcast view ↗</a></div>
+  <main class="weather-board" id="board">
+    <header class="masthead">
+      <a class="brand" href="/" aria-label="Mississippi News Group home"><img src="/assets/logo-256.png" alt="" width="60" height="60"><span>MISSISSIPPI<br><b>NEWS GROUP</b></span></a>
+      <div class="title-block"><p class="eyebrow">FROM THE DELTA TO THE COAST</p><h1>Mississippi <span>Weather</span></h1></div>
+      <div class="clock-block"><span class="auto-label"><i></i> AUTOMATIC UPDATES</span><time id="clock">—</time><span id="date">Central Time</span></div>
+    </header>
+    <nav class="regions" id="regions" aria-label="Forecast region"></nav>
+    <div class="dashboard">
+      <section class="radar-panel" aria-labelledby="radar-title">
+        <div class="panel-heading"><div><span class="live-dot"></span><h2 id="radar-title">STATEWIDE RADAR</h2><span class="sub-label">NOAA · Doppler reflectivity mosaic</span></div><span id="radar-status" class="status">Connecting to NOAA…</span></div>
+        <div class="map-wrap">
+          <svg id="radar-map" viewBox="0 0 1000 680" role="img" aria-label="Mississippi statewide radar with county boundaries and available warning polygons"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#334962" stroke-width="0.4"/></pattern></defs><rect width="1000" height="680" fill="#0b2035"/><rect width="1000" height="680" fill="url(#grid)"/><g id="states"></g><g id="counties"></g><g id="radar-images"></g><g id="alert-shapes"></g><g id="map-labels"></g></svg>
+          <div class="map-caption"><span class="map-kicker">MISSISSIPPI</span><span id="map-message">Loading official radar frames</span></div>
+          <div class="radar-legend"><span>LIGHT</span><i></i><span>HEAVY</span><small>dBZ</small></div>
+          <div class="map-attribution">Radar: NOAA / NWS · Boundaries: U.S. Census Bureau</div>
+        </div>
+        <div class="radar-controls"><button id="radar-play" type="button" aria-label="Pause radar animation">Ⅱ</button><input id="radar-timeline" type="range" min="0" max="0" value="0" aria-label="Radar frame"><span id="radar-time">Waiting for radar</span><button id="latest-radar" type="button">Latest</button></div>
+      </section>
+      <aside class="sidebar">
+        <section class="local-forecast" aria-labelledby="city-name"><div class="forecast-heading"><p class="eyebrow" id="region-name">LOCAL FORECAST</p><select id="city-select" aria-label="Choose forecast city"></select></div><h2 id="city-name">Jackson</h2><div class="hero-weather"><div><span id="hero-temp">—</span><span class="degree">°F</span></div><div id="hero-icon" class="weather-icon" aria-hidden="true"></div></div><div class="period-name" id="period-name">Waiting for NWS forecast</div><p id="hero-summary">Connecting to the National Weather Service.</p><div class="weather-metrics"><div><span>RAIN CHANCE</span><strong id="rain-chance">—</strong></div><div><span>WIND</span><strong id="wind">—</strong></div></div><div id="forecast-status" class="source-note">Source: National Weather Service</div></section>
+        <section class="alerts-panel" aria-labelledby="alerts-title"><div class="section-heading"><h2 id="alerts-title">WATCHES & WARNINGS</h2><span id="alert-count">—</span></div><div id="alert-spotlight" class="alert-spotlight" role="status">Checking active NWS alerts…</div><button id="alerts-open" type="button" class="text-button">View all alerts & instructions ↗</button><small id="alert-status">Waiting for official alert feed</small></section>
+        <section class="region-panel" id="region-panel"><div class="section-heading"><h2>AROUND THE REGION</h2><span class="tiny-label">FORECAST °F</span></div><div id="region-cities"></div></section>
+        <section class="camera-panel" id="camera-panel" hidden><div class="section-heading"><h2>MDOT TRAFFIC CAMERA</h2><span id="camera-context"></span></div><div id="camera-media"></div><div class="camera-caption"><strong id="camera-name"></strong><span id="camera-status"></span></div></section>
+      </aside>
+    </div>
+    <section class="outlook" aria-labelledby="outlook-title"><div class="outlook-heading"><h2 id="outlook-title">7-DAY OUTLOOK <span id="outlook-city">/ JACKSON</span></h2><span id="outlook-note">NWS forecast · highs / lows °F</span></div><div class="days" id="forecast-days"></div></section>
+    <footer class="ticker"><span class="ticker-tag" id="ticker-tag">NWS ALERTS</span><div class="ticker-window"><p id="ticker-text">Connecting to official weather sources. Alert status is not yet available.</p></div><div class="network-mark">MNG <span>WEATHER</span></div></footer>
+    <div class="board-footer"><span id="feed-health">Checking source freshness…</span><span>mississippinewsgroup.com/weather</span></div>
+  </main>
+  <div class="viewer-tools"><button id="rotation-toggle" type="button">Pause city rotation</button><button id="next-city" type="button">Next city →</button><a href="https://radar.weather.gov/" target="_blank" rel="noopener">Official NWS radar ↗</a><a href="https://www.mdottraffic.com/default.aspx?showMain=true" target="_blank" rel="noopener">MDOT traffic ↗</a><span>Radar and forecasts update automatically. Keep NOAA Weather Radio or local alerts enabled.</span></div>
+  <dialog id="alerts-dialog"><div class="dialog-heading"><h2>Mississippi weather alerts</h2><button id="alerts-close" type="button" aria-label="Close alerts">×</button></div><p id="dialog-status"></p><div id="alerts-list"></div><a href="https://www.weather.gov/" target="_blank" rel="noopener">National Weather Service ↗</a></dialog>
+  <noscript>This weather display needs JavaScript. Visit <a href="https://www.weather.gov/">weather.gov</a> for official forecasts and alerts.</noscript>
+</body>
+</html>

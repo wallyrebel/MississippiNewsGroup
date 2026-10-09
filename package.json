@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "description": "Static hub site + Netlify Function to merge RSS feeds",
+  "scripts": {
+    "dev:weather": "node scripts/weather-dev.js",
+    "test:weather": "node --test tests/weather.test.js"
+  },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "node-fetch": "^2.6.12",
