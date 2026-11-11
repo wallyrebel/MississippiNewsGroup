@@ -1,384 +1,426 @@
 // ============================================================
-// Mississippi News Group Hub — App Script (Redesigned)
+// Mississippi News Group — front page behaviour
+// The page arrives with stories already rendered by the server
+// (netlify/functions/home.js). This script adds filtering,
+// search, live timestamps and background refresh. If the page
+// was served without stories, it fetches and renders them itself.
 // ============================================================
 
-// ------ Mobile menu ------
-const menuBtn = document.querySelector(".menu-btn");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuOverlay = document.getElementById("menuOverlay");
-const menuClose = document.getElementById("menuClose");
-
-function setMenu(open) {
-  if (!mobileMenu || !menuOverlay || !menuBtn) return;
-  mobileMenu.hidden = !open;
-  menuOverlay.hidden = !open;
-  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-  document.documentElement.style.overflow = open ? "hidden" : "";
-}
-
-menuBtn?.addEventListener("click", () => setMenu(true));
-menuClose?.addEventListener("click", () => setMenu(false));
-menuOverlay?.addEventListener("click", () => setMenu(false));
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") setMenu(false);
-});
-mobileMenu?.addEventListener("click", (e) => {
-  const t = e.target;
-  if (t && t.tagName === "A") setMenu(false);
-});
-
-// ------ Imports ------
 import { SITES } from "./sites.js";
+import {
+  esc, kindOf, areaOf, areaLabel, renderFront, renderCards, renderList, renderAd,
+  relativeStamp, clockTime, fullDate, cardCountFor,
+} from "./render.js";
 
-// ------ DOM refs ------
+const FEED_URL = "/.netlify/functions/rss?limit=100";
+const ADS_URL = "/.netlify/functions/ads";
+const REFRESH_MS = 5 * 60 * 1000;
+
+const $ = (id) => document.getElementById(id);
 const els = {
-  grid: document.getElementById("grid"),
-  status: document.getElementById("status"),
-  count: document.getElementById("count"),
-  search: document.getElementById("search"),
-  filter: document.getElementById("siteFilter"),
-  refresh: document.getElementById("refresh"),
-  sitesGrid: document.getElementById("sitesGrid"),
-  quicklinks: document.getElementById("quicklinks"),
-  sidebar: document.getElementById("sidebar"),
-  bannerAd: document.getElementById("bannerAd"),
+  front: $("front"), top: $("top"), banner: $("bannerAd"), grid: $("grid"), list: $("list"),
+  moreWrap: $("moreWrap"), moreTitle: $("moreTitle"), status: $("status"),
+  feedTitle: $("feedTitle"), feedSub: $("feedSub"), search: $("search"),
+  sidebar: $("sidebar"), updated: $("updated"), today: $("today"), newPill: $("newStories"),
+  filters: $("filters"),
 };
 
-// ------ Ad state ------
-let adsData = { inline: [], sidebar: [], banner: [] };
-const AD_INTERVAL = 6;
+const state = {
+  items: [],
+  ads: { inline: [], sidebar: [], banner: [] },
+  kind: "all",
+  area: "all",
+  q: "",
+  loadedAt: 0,
+  pending: null, // fresher items waiting behind the "New stories" pill
+};
 
-// ------ Helpers ------
-function fmtDate(iso) {
-  try {
-    const d = new Date(iso);
-    return d.toLocaleString(undefined, {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-    });
-  } catch {
-    return "";
-  }
-}
+// ------ Filters ------
+const isFiltered = () => state.kind !== "all" || state.area !== "all" || state.q !== "";
 
-function escapeHtml(str = "") {
-  return str.replace(/[&<>"']/g, (m) =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[m])
-  );
-}
-
-// ------ Render site pills, dropdown, site cards ------
-function renderSites() {
-  // Dropdown options
-  for (const s of SITES) {
-    const opt = document.createElement("option");
-    opt.value = s.name;
-    opt.textContent = s.name;
-    els.filter.appendChild(opt);
-  }
-
-  // Site cards
-  els.sitesGrid.innerHTML = SITES.map(
-    (s) => `
-    <a class="site" href="${s.home}" target="_blank" rel="noopener">
-      <div class="site-name">${escapeHtml(s.name)}</div>
-      <div class="site-url">${escapeHtml(s.home.replace("https://", ""))}</div>
-    </a>
-  `
-  ).join("");
-
-  // Quick links (top 6 + View all)
-  const top = SITES.slice(0, 6);
-  els.quicklinks.innerHTML =
-    top
-      .map(
-        (s) => `
-    <a class="qpill" href="${s.home}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>
-  `
-      )
-      .join("") +
-    `<a class="qpill" href="#sites">View all sites →</a>`;
-}
-
-// ------ Filtering ------
-let allItems = [];
-
-function getFiltered() {
-  const q = (els.search.value || "").trim().toLowerCase();
-  const site = els.filter.value;
-  return allItems.filter((it) => {
-    if (site !== "all" && it.site !== site) return false;
-    if (!q) return true;
-    return (it.title || "").toLowerCase().includes(q);
+function filteredItems() {
+  const q = state.q.toLowerCase();
+  return state.items.filter((it) => {
+    if (state.kind !== "all" && kindOf(it) !== state.kind) return false;
+    if (state.area !== "all" && areaOf(it) !== state.area) return false;
+    if (q && !`${it.title} ${it.excerpt || ""} ${it.site}`.toLowerCase().includes(q)) return false;
+    return true;
   });
 }
 
-// ------ Ad card renderer ------
-function renderAdCard(ad, className = "ad-card") {
-  return `
-    <div class="${className}">
-      <a href="${escapeHtml(ad.link)}" target="_blank" rel="noopener sponsored">
-        <img src="${escapeHtml(ad.image)}" alt="${escapeHtml(ad.alt || ad.title)}" loading="lazy" />
-      </a>
-    </div>
-  `;
+function describeFilter() {
+  const place = state.area === "all" ? "Mississippi" : areaLabel(state.area);
+  const what = state.kind === "sports" ? "sports" : state.kind === "news" ? "news" : "headlines";
+  if (state.area === "statewide") return `Statewide ${what}`;
+  return `${place} ${what}`;
 }
 
-// ------ Render articles ------
-function renderItems(items) {
-  if (!items.length) {
-    els.grid.innerHTML = "";
-    els.status.textContent = "No stories found (try Refresh).";
-    els.count.textContent = "0";
-    return;
+function areaSiteLinks() {
+  if (state.area === "all") return "";
+  return SITES.filter((s) => s.area === state.area && (state.kind === "all" || s.kind === state.kind))
+    .map((s) => `<a href="${esc(s.home)}" target="_blank" rel="noopener">${esc(s.name)} ↗</a>`)
+    .join(" · ");
+}
+
+// Say why the list is empty and offer the one step that widens it.
+function emptyMessage(links) {
+  if (state.q) {
+    return `No headlines match “${esc(state.q)}”. <button class="link-btn" type="button" data-clear="q">Clear search</button>`;
   }
+  if (state.area !== "all" && state.kind !== "all") {
+    const place = state.area === "statewide" ? "statewide" : `from ${esc(areaLabel(state.area))}`;
+    return `No recent ${state.kind} headlines ${place}. <button class="link-btn" type="button" data-clear="kind">Show everything ${place}</button>`;
+  }
+  return links
+    ? `No recent headlines here right now. For full coverage visit ${links}`
+    : "No recent headlines here right now.";
+}
+
+// ------ Rendering ------
+function render() {
+  const now = new Date();
   els.status.textContent = "";
-  els.count.textContent = String(items.length);
 
-  let inlineAdIndex = 0;
-  const inlineAds = adsData.inline || [];
+  if (!isFiltered()) {
+    const html = renderFront(state.items, state.ads, now);
+    els.front.hidden = false;
+    els.top.innerHTML = html.top;
+    els.grid.innerHTML = html.cards;
+    els.list.innerHTML = html.list;
+    els.moreWrap.hidden = !html.counts.list;
+    els.feedTitle.textContent = "Latest headlines";
+    els.feedSub.textContent = "The newest stories from every newsroom in the network.";
+    els.moreTitle.textContent = "More Mississippi headlines";
+  } else {
+    const items = filteredItems();
+    els.front.hidden = true;
+    const cardCount = cardCountFor(state.ads);
+    els.grid.innerHTML = renderCards(items.slice(0, cardCount), state.ads);
+    els.list.innerHTML = renderList(items.slice(cardCount), { now });
+    els.moreWrap.hidden = items.length <= cardCount;
+    els.feedTitle.textContent = state.q ? `Results for “${state.q}”` : describeFilter();
+    const label = describeFilter();
+    els.moreTitle.textContent = `More ${label.startsWith("Statewide") ? label.toLowerCase() : label}`;
 
-  const html = items
-    .map((it, idx) => {
-      const img = it.image
-        ? `<img class="thumb" src="${it.image}" alt="" loading="lazy" />`
-        : `<div class="thumb" aria-hidden="true"></div>`;
+    const count = `${items.length} recent ${items.length === 1 ? "story" : "stories"}`;
+    const links = areaSiteLinks();
+    els.feedSub.innerHTML = links ? `${count} · Full coverage: ${links}` : esc(count);
 
-      const excerpt = it.excerpt
-        ? `<div class="excerpt">${escapeHtml(it.excerpt)}</div>`
-        : "";
-
-      // Local article badge style
-      const badgeClass = it.isLocal
-        ? 'badge" style="background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.25);color:#92400e;'
-        : 'badge';
-
-      // Staggered entrance delay
-      const delay = Math.min(idx * 60, 600);
-
-      let card = `
-      <article class="card" style="--delay:${delay}ms">
-        <a href="${it.link}" target="_blank" rel="noopener" style="text-decoration:none;display:flex;flex-direction:column;flex:1">
-          ${img}
-          <div class="card-body">
-            <div class="kicker">
-              <span class="${badgeClass}">${escapeHtml(it.site)}</span>
-              <span class="time">${escapeHtml(fmtDate(it.date))}</span>
-            </div>
-            <div class="title">${escapeHtml(it.title || "")}</div>
-            ${excerpt}
-          </div>
-        </a>
-      </article>
-    `;
-
-      // Insert inline ad every AD_INTERVAL articles
-      if ((idx + 1) % AD_INTERVAL === 0 && inlineAds.length > 0) {
-        const ad = inlineAds[inlineAdIndex % inlineAds.length];
-        card += renderAdCard(ad, "ad-card");
-        inlineAdIndex++;
-      }
-
-      return card;
-    })
-    .join("");
-
-  els.grid.innerHTML = html;
+    if (!items.length) els.status.innerHTML = emptyMessage(links);
+  }
+  refreshTimes();
 }
 
-// ------ Render ads ------
 function renderAds() {
-  // Banner ad
-  if (els.bannerAd && adsData.banner && adsData.banner.length > 0) {
-    const ad = adsData.banner[0];
-    els.bannerAd.innerHTML = `
-      <div class="ad-banner">
-        <a href="${escapeHtml(ad.link)}" target="_blank" rel="noopener sponsored">
-          <img src="${escapeHtml(ad.image)}" alt="${escapeHtml(ad.alt || ad.title)}" />
-        </a>
-      </div>
-    `;
-  }
+  const banner = (state.ads.banner || [])[0];
+  els.banner.innerHTML = banner ? renderAd(banner, "ad ad--banner") : "";
+  els.sidebar.innerHTML = (state.ads.sidebar || []).map((ad) => renderAd(ad, "ad ad--rail")).join("");
+}
 
-  // Sidebar ads
-  if (els.sidebar && adsData.sidebar && adsData.sidebar.length > 0) {
-    els.sidebar.innerHTML = adsData.sidebar
-      .map(
-        (ad) => `
-      <div class="sidebar-ad">
-        <a href="${escapeHtml(ad.link)}" target="_blank" rel="noopener sponsored">
-          <img src="${escapeHtml(ad.image)}" alt="${escapeHtml(ad.alt || ad.title)}" loading="lazy" />
-        </a>
-      </div>
-    `
-      )
-      .join("");
+// Server-rendered times are absolute; make them relative and keep them fresh.
+function refreshTimes() {
+  const now = new Date();
+  document.querySelectorAll("time[data-rel]").forEach((t) => {
+    const rel = relativeStamp(t.dateTime, now);
+    if (rel) t.textContent = rel;
+  });
+  if (state.loadedAt) els.updated.textContent = `Updated ${clockTime(state.loadedAt)} Central`;
+  if (els.today) els.today.textContent = fullDate(now);
+}
+
+function setPressed(group, attr, value) {
+  document.querySelectorAll(`[${attr}]`).forEach((b) => {
+    if (b.closest(group)) b.setAttribute("aria-pressed", String(b.getAttribute(attr) === value));
+  });
+}
+
+function syncControls() {
+  setPressed(".seg", "data-kind", state.kind);
+  setPressed(".chips", "data-area", state.area);
+  if (els.search.value !== state.q) els.search.value = state.q;
+  const active = document.querySelector('.chips [aria-pressed="true"]');
+  active?.scrollIntoView({ block: "nearest", inline: "center" });
+}
+
+function syncUrl() {
+  const p = new URLSearchParams();
+  if (state.area !== "all") p.set("community", state.area);
+  if (state.kind !== "all") p.set("show", state.kind);
+  if (state.q) p.set("q", state.q);
+  const qs = p.toString();
+  history.replaceState(null, "", `${location.pathname}${qs ? `?${qs}` : ""}${location.hash}`);
+}
+
+function readUrl() {
+  const p = new URLSearchParams(location.search);
+  const area = p.get("community");
+  const kind = p.get("show");
+  if (area && document.querySelector(`.chips [data-area="${CSS.escape(area)}"]`)) state.area = area;
+  if (kind === "news" || kind === "sports") state.kind = kind;
+  state.q = (p.get("q") || "").trim().slice(0, 80);
+}
+
+function applyFilters({ scroll = true } = {}) {
+  syncControls();
+  syncUrl();
+  render();
+  // Keep the reader at the top of the results instead of wherever the old list left them.
+  if (scroll && els.filters.getBoundingClientRect().top <= 0) {
+    $("latest").scrollIntoView({ block: "start" });
   }
 }
 
-// ------ Fetch ads ------
+// ------ Data ------
+async function fetchJson(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`${url} → ${res.status}`);
+  return res.json();
+}
+
+async function loadLatest({ silent = false } = {}) {
+  if (!silent) els.status.textContent = "Loading the latest stories…";
+  try {
+    const data = await fetchJson(FEED_URL);
+    const items = data.items || [];
+    if (!items.length) throw new Error("Empty feed");
+    const isNew = !state.items.length || items[0].link !== state.items[0].link;
+    state.loadedAt = Date.now();
+
+    if (silent && isNew && window.scrollY > 600) {
+      // Don't yank the page out from under someone mid-read.
+      state.pending = items;
+      els.newPill.hidden = false;
+    } else if (isNew) {
+      state.items = items;
+      render();
+    } else {
+      refreshTimes();
+    }
+  } catch (e) {
+    console.error(e);
+    if (!state.items.length) {
+      els.top.innerHTML = "";
+      els.grid.innerHTML = "";
+      els.status.innerHTML =
+        'We couldn’t load the latest stories just now. <button class="link-btn" type="button" data-retry>Try again</button>';
+    }
+  }
+}
+
 async function loadAds() {
   try {
-    const res = await fetch("/.netlify/functions/ads", { cache: "no-store" });
-    if (res.ok) {
-      adsData = await res.json();
-      renderAds();
-    }
+    state.ads = await fetchJson(ADS_URL);
+    renderAds();
+    if (state.items.length) render();
   } catch (e) {
     console.warn("Could not load ads:", e);
   }
 }
 
-// ------ Fetch RSS ------
-async function loadLatest() {
-  els.status.textContent = "Loading the latest stories…";
-  try {
-    const res = await fetch("/.netlify/functions/rss?limit=36", {
-      cache: "no-store",
-    });
-    if (!res.ok) throw new Error("RSS fetch failed");
-    const data = await res.json();
-    allItems = (data.items || []).slice(0, 36);
-    renderItems(getFiltered());
-  } catch (e) {
-    els.status.textContent =
-      "Could not load RSS feeds right now. Try again in a moment.";
-    console.error(e);
+function boot() {
+  readUrl();
+  const seed = $("initial-data");
+  let seeded = false;
+  if (seed) {
+    try {
+      const data = JSON.parse(seed.textContent);
+      state.items = data.items || [];
+      state.ads = data.ads || state.ads;
+      state.loadedAt = data.generatedAt || Date.now();
+      seeded = state.items.length > 0;
+    } catch (e) {
+      console.warn("Bad initial data", e);
+    }
+  }
+
+  if (seeded) {
+    // Stories are already on the page; only re-render if a filter came in on the URL.
+    if (isFiltered()) applyFilters({ scroll: false });
+    else refreshTimes();
+    // The pre-rendered page can be a few minutes old, so check for newer stories.
+    if (Date.now() - state.loadedAt > REFRESH_MS) loadLatest({ silent: true });
+  } else {
+    syncControls();
+    loadAds();
+    loadLatest();
   }
 }
 
-// ------ Wire up event listeners ------
-function wireUp() {
-  els.search?.addEventListener("input", () => renderItems(getFiltered()));
-  els.filter?.addEventListener("change", () => renderItems(getFiltered()));
-  els.refresh?.addEventListener("click", () => loadLatest());
+// ------ Events ------
+document.addEventListener("click", (e) => {
+  const kindBtn = e.target.closest(".seg [data-kind]");
+  if (kindBtn) {
+    state.kind = kindBtn.dataset.kind;
+    return applyFilters();
+  }
+  const areaBtn = e.target.closest(".chips [data-area]");
+  if (areaBtn) {
+    state.area = areaBtn.dataset.area;
+    return applyFilters();
+  }
+  if (e.target.closest("[data-show-more]")) {
+    els.list.querySelectorAll("[data-extra]").forEach((el) => (el.hidden = false));
+    e.target.closest("[data-show-more]").remove();
+    return;
+  }
+  if (e.target.closest("[data-retry]")) return loadLatest();
+  const clear = e.target.closest("[data-clear]");
+  if (clear) {
+    if (clear.dataset.clear === "q") state.q = "";
+    else state.kind = "all";
+    return applyFilters({ scroll: false });
+  }
+
+  const reason = e.target.closest("[data-reason]");
+  if (reason) {
+    const select = $("reason");
+    if (select) select.value = reason.dataset.reason;
+  }
+});
+
+let searchTimer;
+els.search.addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.q = els.search.value.trim();
+    applyFilters({ scroll: false });
+  }, 150);
+});
+
+els.newPill.addEventListener("click", () => {
+  if (state.pending) state.items = state.pending;
+  state.pending = null;
+  els.newPill.hidden = true;
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Photos are hot-linked from the network sites; if one fails, fall back to the placeholder.
+document.addEventListener(
+  "error",
+  (e) => {
+    const img = e.target;
+    if (!(img instanceof HTMLImageElement)) return;
+    const box = img.closest(".media");
+    if (box) {
+      box.classList.add("media--empty");
+      img.remove();
+    } else {
+      img.closest(".ad")?.remove();
+    }
+  },
+  true
+);
+
+// Refresh when a reader comes back to a tab that has been sitting a while.
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && Date.now() - state.loadedAt > REFRESH_MS) {
+    loadLatest({ silent: true });
+  }
+});
+setInterval(() => {
+  if (document.visibilityState !== "visible") return;
+  if (Date.now() - state.loadedAt > REFRESH_MS) loadLatest({ silent: true });
+  else refreshTimes();
+}, 60 * 1000);
+
+// ------ Mobile menu ------
+const menuBtn = document.querySelector(".menu-btn");
+const mobileMenu = $("mobileMenu");
+
+function setMenu(open) {
+  if (!menuBtn || !mobileMenu) return;
+  mobileMenu.hidden = !open;
+  menuBtn.setAttribute("aria-expanded", String(open));
 }
+menuBtn?.addEventListener("click", () => setMenu(mobileMenu.hidden));
+mobileMenu?.addEventListener("click", (e) => {
+  if (e.target.closest("a")) setMenu(false);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") setMenu(false);
+});
 
 // ------ Now Hiring ------
-const hiringNavLink = document.getElementById("hiringNavLink");
-const hiringMobileLink = document.getElementById("hiringMobileLink");
-const hiringOverlay = document.getElementById("hiringOverlay");
-const hiringModal = document.getElementById("hiringModal");
-const hiringClose = document.getElementById("hiringClose");
-const hiringContent = document.getElementById("hiringContent");
+const hiringModal = $("hiringModal");
+const hiringContent = $("hiringContent");
 
-function setHiringModal(open) {
-  if (!hiringModal || !hiringOverlay) return;
-  hiringModal.hidden = !open;
-  hiringOverlay.hidden = !open;
-  document.documentElement.style.overflow = open ? "hidden" : "";
-}
+const paragraphs = (text = "") =>
+  text.split("\n").filter((p) => p.trim()).map((p) => `<p>${esc(p)}</p>`).join("");
+const bullets = (title, list) =>
+  list?.length
+    ? `<h4 class="job-section">${esc(title)}</h4><ul class="job-list">${list.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`
+    : "";
 
-function renderHiringPositions(positions) {
-  if (!hiringContent || !positions.length) return;
+function renderHiring(positions) {
   hiringContent.innerHTML = positions
     .map(
       (pos) => `
-    <div class="job-card">
-      <div class="job-title">${escapeHtml(pos.title)}</div>
-      <div class="job-meta">
-        <span class="job-tag">📍 ${escapeHtml(pos.location)}</span>
-        ${pos.type ? `<span class="job-tag">${escapeHtml(pos.type)}</span>` : ""}
-      </div>
-      <div class="job-desc">${(pos.description || "")
-        .split("\n")
-        .map((p) => `<p>${escapeHtml(p)}</p>`)
-        .join("")}</div>
-      ${
-        pos.about
-          ? `<div class="job-desc">${pos.about
-              .split("\n")
-              .filter((p) => p.trim())
-              .map((p) => `<p>${escapeHtml(p)}</p>`)
-              .join("")}</div>`
-          : ""
-      }
-      ${
-        pos.responsibilities
-          ? `<div class="job-section-title">What You'll Do</div>
-             <ul class="job-list">${pos.responsibilities.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`
-          : ""
-      }
-      ${
-        pos.qualifications
-          ? `<div class="job-section-title">What We're Looking For</div>
-             <ul class="job-list">${pos.qualifications.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}</ul>`
-          : ""
-      }
-      ${
-        pos.requirements
-          ? `<div class="job-section-title">Requirements</div>
-             <ul class="job-list">${pos.requirements.map((r) => `<li>${escapeHtml(r)}</li>`).join("")}</ul>`
-          : ""
-      }
-      ${
-        pos.benefits
-          ? `<div class="job-section-title">What We Offer</div>
-             <ul class="job-list">${pos.benefits.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
-          : ""
-      }
+    <article class="job">
+      <h3 class="job-title">${esc(pos.title)}</h3>
+      <p class="job-meta">
+        <span class="job-tag">${esc(pos.location || "")}</span>
+        ${pos.type ? `<span class="job-tag">${esc(pos.type)}</span>` : ""}
+      </p>
+      ${paragraphs(pos.description)}
+      ${paragraphs(pos.about)}
+      ${bullets("What you'll do", pos.responsibilities)}
+      ${bullets("What we're looking for", pos.qualifications)}
+      ${bullets("Requirements", pos.requirements)}
+      ${bullets("What we offer", pos.benefits)}
       ${
         pos.applyEmail
           ? `<div class="job-apply">
-               <div class="job-apply-title">How to Apply</div>
-               <a class="job-apply-email" href="mailto:${escapeHtml(pos.applyEmail)}">
-                 ✉️ ${escapeHtml(pos.applyEmail)}
-               </a>
-               ${pos.applyNote ? `<div class="job-apply-note">${escapeHtml(pos.applyNote)}</div>` : ""}
+               <h4 class="job-section">How to apply</h4>
+               <a class="btn btn-navy" href="mailto:${esc(pos.applyEmail)}">Email ${esc(pos.applyEmail)}</a>
+               ${pos.applyNote ? `<p class="job-note">${esc(pos.applyNote)}</p>` : ""}
              </div>`
           : ""
       }
-    </div>
-  `
+    </article>`
     )
     .join("");
 }
 
+function openHiring() {
+  setMenu(false);
+  if (hiringModal && !hiringModal.open) hiringModal.showModal();
+}
+
 async function loadHiring() {
+  if (!hiringModal) return;
   try {
-    const res = await fetch("/content/hiring.json", { cache: "no-store" });
-    if (!res.ok) return;
-    const data = await res.json();
-    if (!data.enabled || !data.positions || !data.positions.length) return;
+    const data = await fetchJson("/content/hiring.json");
+    if (!data.enabled || !data.positions?.length) return;
 
-    // Show nav links
-    if (hiringNavLink) hiringNavLink.hidden = false;
-    if (hiringMobileLink) hiringMobileLink.hidden = false;
-
-    // Render positions
-    renderHiringPositions(data.positions);
-
-    // Wire up open/close
-    const openModal = (e) => {
-      e.preventDefault();
-      setMenu(false);
-      setHiringModal(true);
-    };
-    hiringNavLink?.addEventListener("click", openModal);
-    hiringMobileLink?.addEventListener("click", openModal);
-    hiringClose?.addEventListener("click", () => setHiringModal(false));
-    hiringOverlay?.addEventListener("click", () => setHiringModal(false));
-
-    // Auto-open if URL has #hiring
-    if (window.location.hash === "#hiring") {
-      setHiringModal(true);
+    renderHiring(data.positions);
+    const teaser = $("hiringTeaser");
+    if (teaser) {
+      teaser.textContent =
+        data.positions.length === 1
+          ? data.positions[0].title
+          : `${data.positions.length} open positions at Mississippi News Group.`;
     }
+    document.querySelectorAll("[data-hiring-link]").forEach((link) => {
+      link.hidden = false;
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        openHiring();
+      });
+    });
+    $("hiringClose")?.addEventListener("click", () => hiringModal.close());
+    // Click on the backdrop closes the dialog.
+    hiringModal.addEventListener("click", (e) => {
+      if (e.target === hiringModal) hiringModal.close();
+    });
+    if (location.hash === "#hiring") openHiring();
   } catch (e) {
     console.warn("Could not load hiring data:", e);
   }
 }
 
-// Close hiring modal on Escape (extend existing handler)
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") setHiringModal(false);
-});
-
-// ------ Initialise ------
-renderSites();
-wireUp();
-loadAds();
-loadLatest();
+// ------ Go ------
+const year = $("year");
+if (year) year.textContent = String(new Date().getFullYear());
+boot();
 loadHiring();

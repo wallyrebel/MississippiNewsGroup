@@ -1,288 +1,507 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Mississippi News Group — Local News & Sports Across Mississippi</title>
+  <title>Mississippi News – Today's Local News &amp; Sports | Mississippi News Group</title>
   <meta name="description"
-    content="Mississippi News Group aggregates breaking local news and sports from 17 community websites across Mississippi. Reach 1M+ monthly page views and 600K+ social followers — advertise with us today." />
-
-  <!-- Canonical -->
+    content="Today's Mississippi news and sports from 17 local newsrooms — DeSoto County, Oxford, Tupelo, Corinth, the Delta and more. Updated all day." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://mississippinewsgroup.com/" />
+  <meta name="geo.region" content="US-MS" />
+  <meta name="geo.placename" content="Mississippi" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://mississippinewsgroup.com/" />
-  <meta property="og:title" content="Mississippi News Group — Local News & Sports Across Mississippi" />
-  <meta property="og:description"
-    content="Your one-stop hub for local Mississippi news and sports from 17 publications. Advertise across the network to reach 1M+ monthly readers." />
-  <meta property="og:image" content="https://mississippinewsgroup.com/assets/logo-1024.png" />
   <meta property="og:site_name" content="Mississippi News Group" />
+  <meta property="og:title" content="Mississippi News – Today's Local News &amp; Sports" />
+  <meta property="og:description"
+    content="The latest local news and sports headlines from 17 community newsrooms across Mississippi." />
+  <meta property="og:image" content="https://mississippinewsgroup.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Mississippi News Group — local news and sports from across Mississippi" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mississippi News Group — Local News & Sports" />
+  <meta name="twitter:title" content="Mississippi News – Today's Local News &amp; Sports" />
   <meta name="twitter:description"
-    content="Breaking local news and sports from 17 Mississippi publications. 1M+ monthly page views." />
-  <meta name="twitter:image" content="https://mississippinewsgroup.com/assets/logo-1024.png" />
+    content="The latest local news and sports headlines from 17 community newsrooms across Mississippi." />
+  <meta name="twitter:image" content="https://mississippinewsgroup.com/assets/og-image.jpg" />
 
-  <link rel="icon" href="/assets/logo-256.png" />
+  <!-- Icons -->
+  <meta name="theme-color" content="#12305f" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="modulepreload" href="/render.js" />
+  <link rel="modulepreload" href="/sites.js" />
 
-  <!-- JSON-LD Structured Data -->
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Mississippi News Group",
-    "url": "https://mississippinewsgroup.com",
-    "logo": "https://mississippinewsgroup.com/assets/logo-1024.png",
-    "description": "Mississippi News Group publishes 17 local news and sports websites across Mississippi, generating over 1 million monthly page views and serving 600,000+ social media followers.",
-    "foundingDate": "2013",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "advertising",
-      "email": "myersgrouponline@gmail.com"
-    },
-    "sameAs": [
-      "https://mississippinewsgroup.substack.com/"
+    "@graph": [
+      {
+        "@type": "NewsMediaOrganization",
+        "@id": "https://mississippinewsgroup.com/#organization",
+        "name": "Mississippi News Group",
+        "url": "https://mississippinewsgroup.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mississippinewsgroup.com/assets/logo-512.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://mississippinewsgroup.com/assets/og-image.jpg",
+        "description": "Mississippi News Group publishes 17 local news and sports websites covering communities across Mississippi.",
+        "foundingDate": "2013",
+        "areaServed": {
+          "@type": "State",
+          "name": "Mississippi",
+          "sameAs": "https://en.wikipedia.org/wiki/Mississippi"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "advertising",
+          "email": "myersgrouponline@gmail.com"
+        },
+        "sameAs": [
+          "https://mississippinewsgroup.substack.com/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mississippinewsgroup.com/#website",
+        "url": "https://mississippinewsgroup.com/",
+        "name": "Mississippi News Group",
+        "description": "Local Mississippi news and sports from 17 community newsrooms.",
+        "inLanguage": "en-US",
+        "publisher": { "@id": "https://mississippinewsgroup.com/#organization" }
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://mississippinewsgroup.com/#webpage",
+        "url": "https://mississippinewsgroup.com/",
+        "name": "Mississippi News – Today's Local News & Sports",
+        "description": "Today's Mississippi news and sports from 17 local newsrooms.",
+        "inLanguage": "en-US",
+        "isPartOf": { "@id": "https://mississippinewsgroup.com/#website" },
+        "about": {
+          "@type": "State",
+          "name": "Mississippi",
+          "sameAs": "https://en.wikipedia.org/wiki/Mississippi"
+        }
+      }
     ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Mississippi News Group",
-    "url": "https://mississippinewsgroup.com",
-    "description": "Aggregated local news and sports from 17 Mississippi community publications."
   }
   </script>
 </head>
 
 <body>
-  <header class="topbar" role="banner">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="/" aria-label="Mississippi News Group — home">
-        <img class="logo" src="/assets/logo-256.png" srcset="/assets/logo-256.png 256w, /assets/logo-512.png 512w"
-          alt="Mississippi News Group logo" width="44" height="44" />
-        <div class="brand-text">
-          <div class="brand-name">Mississippi News Group</div>
-          <div class="brand-tag">News + Sports across Mississippi</div>
-        </div>
-      </a>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#latest">Home</a>
-        <a href="/weather">Weather</a>
-        <a href="#sites">Our Sites</a>
-        <a href="#advertise">Advertise</a>
-        <a href="#contact">Contact</a>
-        <a href="#" id="hiringNavLink" class="hiring-nav-link" hidden>Now Hiring <span class="hiring-dot"></span></a>
-      </nav>
-
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="mobileMenu"
-        aria-expanded="false">
-        <span class="menu-icon" aria-hidden="true"></span>
-      </button>
-      <a class="cta" href="https://mississippinewsgroup.substack.com/" target="_blank"
-        rel="noopener">Subscribe</a>
-    </div>
-  </header>
-
-  <div id="menuOverlay" class="menu-overlay" hidden></div>
-  <div id="mobileMenu" class="mobile-menu" hidden>
-    <div class="mobile-menu-inner">
-      <div class="mobile-menu-head">
-        <div class="mobile-menu-title">Menu</div>
-        <button id="menuClose" class="menu-close" type="button" aria-label="Close menu">✕</button>
-      </div>
-      <nav class="mobile-nav" aria-label="Mobile navigation">
-        <a href="#latest">Home</a>
-        <a href="/weather">Weather</a>
-        <a href="#sites">Our Sites</a>
-        <a href="#advertise">Advertise</a>
-        <a href="#contact">Contact</a>
-        <a href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Subscribe</a>
-        <a href="#" id="hiringMobileLink" class="hiring-mobile-link" hidden>🔥 Now Hiring</a>
-      </nav>
+  <div class="strip">
+    <div class="wrap strip-inner">
+      <span class="strip-date" id="today"><!--ssr:today--><!--/ssr:today--></span>
+      <span class="strip-note">17 local newsrooms · Covering Mississippi since 2013</span>
+      <a class="strip-link" href="/weather"><span class="strip-link-wide">Mississippi weather radar</span><span class="strip-link-narrow">Weather radar</span> <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
-  <main>
-    <section class="hero" aria-label="Network overview">
-      <div class="hero-bg" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <h1>Your Source for Mississippi News</h1>
-          <p>Bringing you the latest local news and sports from across the Magnolia State — powered by 17 community
-            publications.</p>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="/" aria-label="Mississippi News Group — home">
+        <img class="brand-logo" src="/assets/logo-96.png" srcset="/assets/logo-96.png 1x, /assets/logo-256.png 2x"
+          alt="" width="48" height="48" />
+        <span class="brand-text">
+          <span class="brand-name">Mississippi News Group</span>
+          <span class="brand-tag">Local news &amp; sports since 2013</span>
+        </span>
+      </a>
 
-          <div class="quicklinks" id="quicklinks"></div>
+      <nav class="nav" aria-label="Main">
+        <a href="#latest">Latest</a>
+        <a href="#sites">Communities</a>
+        <a href="/weather">Weather</a>
+        <a href="#about">About</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact">Contact</a>
+        <a href="/hiring" class="nav-hiring" data-hiring-link hidden>Now hiring</a>
+      </nav>
 
-          <div class="hero-kpis">
-            <div class="kpi">
-              <div class="kpi-num" data-count="17">17</div>
-              <div class="kpi-label">Websites</div>
-            </div>
-            <div class="kpi">
-              <div class="kpi-num">1M+</div>
-              <div class="kpi-label">Page views / month</div>
-            </div>
-            <div class="kpi">
-              <div class="kpi-num">600K+</div>
-              <div class="kpi-label">Social followers</div>
-            </div>
-            <div class="kpi">
-              <div class="kpi-num">25M+</div>
-              <div class="kpi-label">Monthly social reach</div>
-            </div>
-          </div>
+      <a class="btn btn-gold subscribe" href="https://mississippinewsgroup.substack.com/" target="_blank"
+        rel="noopener">Subscribe</a>
+
+      <button class="menu-btn" type="button" aria-label="Menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile" hidden>
+      <div class="wrap mobile-menu-inner">
+        <a href="#latest">Latest headlines</a>
+        <a href="#sites">Communities</a>
+        <a href="/weather">Weather</a>
+        <a href="#about">About</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact">Contact</a>
+        <a href="/hiring" class="nav-hiring" data-hiring-link hidden>Now hiring</a>
+        <a href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Subscribe to the
+          newsletter</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ Top of the front page ============ -->
+    <section class="front" id="front" aria-labelledby="pageTitle">
+      <div class="wrap">
+        <div class="front-head">
+          <h1 id="pageTitle">Mississippi News</h1>
+          <p class="dek">Today's local news and sports from 17 community newsrooms across Mississippi — from
+            DeSoto County and Oxford to Tupelo, Corinth and the Delta.</p>
+          <p class="updated"><span class="live-dot" aria-hidden="true"></span><span
+              id="updated"><!--ssr:updated-->Loading the latest stories…<!--/ssr:updated--></span></p>
         </div>
+
+        <div class="top" id="top"><!--ssr:top-->
+          <div class="skeleton skeleton--lead" aria-hidden="true"></div>
+          <div class="skeleton skeleton--briefs" aria-hidden="true"></div>
+        <!--/ssr:top--></div>
       </div>
     </section>
 
-    <section id="latest" class="section wrap" aria-label="Latest news">
-      <div class="section-head">
-        <div>
-          <h2>Latest news across our network</h2>
-          <div class="sub">Most recent stories with featured images, newest first.</div>
-        </div>
-        <div class="controls">
-          <input id="search" type="search" placeholder="Search headlines…" autocomplete="off" />
-          <select id="siteFilter" aria-label="Filter by site">
-            <option value="all">All sites</option>
-          </select>
-          <button id="refresh" class="btn" type="button">Refresh</button>
+    <div class="wrap banner-slot" id="bannerAd"><!--ssr:banner--><!--/ssr:banner--></div>
+
+    <!-- ============ Latest headlines ============ -->
+    <section id="latest" class="latest" aria-labelledby="feedTitle">
+      <div class="filters" id="filters">
+        <div class="wrap filters-inner">
+          <div class="seg" role="group" aria-label="Show news or sports">
+            <button type="button" data-kind="all" aria-pressed="true">All</button>
+            <button type="button" data-kind="news" aria-pressed="false">News</button>
+            <button type="button" data-kind="sports" aria-pressed="false">Sports</button>
+          </div>
+          <div class="chips" role="group" aria-label="Filter by community">
+            <button type="button" class="chip" data-area="all" aria-pressed="true">All of Mississippi</button>
+            <button type="button" class="chip" data-area="statewide" aria-pressed="false">Statewide</button>
+            <button type="button" class="chip" data-area="alcorn" aria-pressed="false">Alcorn County</button>
+            <button type="button" class="chip" data-area="benton" aria-pressed="false">Benton County</button>
+            <button type="button" class="chip" data-area="delta" aria-pressed="false">The Delta</button>
+            <button type="button" class="chip" data-area="desoto" aria-pressed="false">DeSoto County</button>
+            <button type="button" class="chip" data-area="lee" aria-pressed="false">Tupelo &amp; Lee County</button>
+            <button type="button" class="chip" data-area="oxford" aria-pressed="false">Oxford</button>
+            <button type="button" class="chip" data-area="pontotoc" aria-pressed="false">Pontotoc</button>
+            <button type="button" class="chip" data-area="prentiss" aria-pressed="false">Prentiss County</button>
+            <button type="button" class="chip" data-area="tippah" aria-pressed="false">Tippah County</button>
+            <button type="button" class="chip" data-area="union" aria-pressed="false">Union County</button>
+          </div>
         </div>
       </div>
 
-      <!-- Banner ad placement -->
-      <div id="bannerAd"></div>
+      <div class="wrap latest-layout">
+        <div class="latest-main">
+          <div class="section-head">
+            <div>
+              <h2 id="feedTitle">Latest headlines</h2>
+              <p class="section-sub" id="feedSub">The newest stories from every newsroom in the network.</p>
+            </div>
+            <div class="search">
+              <label class="visually-hidden" for="search">Search headlines</label>
+              <input id="search" type="search" placeholder="Search headlines" autocomplete="off" />
+            </div>
+          </div>
 
-      <div id="status" class="status" role="status" aria-live="polite">Loading the latest stories…</div>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
 
-      <div class="content-wrapper">
-        <div class="main-content">
-          <div id="grid" class="grid" aria-live="polite"></div>
-          <div class="note">Showing up to <span id="count">0</span> of the most recent posts across the network.
+          <div id="grid" class="cards"><!--ssr:cards-->
+            <div class="skeleton skeleton--card" aria-hidden="true"></div>
+            <div class="skeleton skeleton--card" aria-hidden="true"></div>
+            <div class="skeleton skeleton--card" aria-hidden="true"></div>
+          <!--/ssr:cards--></div>
+
+          <div class="more" id="moreWrap">
+            <h2 class="more-title" id="moreTitle">More Mississippi headlines</h2>
+            <div id="list"><!--ssr:list--><!--/ssr:list--></div>
           </div>
         </div>
-        <aside class="sidebar" id="sidebar" aria-label="Sponsored content">
-          <!-- Sidebar ads will be inserted here -->
+
+        <aside class="rail" aria-label="More from Mississippi News Group">
+          <a class="rail-card rail-card--weather" href="/weather">
+            <span class="rail-eyebrow">Live radar &amp; alerts</span>
+            <span class="rail-title">Mississippi weather</span>
+            <span class="rail-text">Statewide radar, National Weather Service warnings and seven-day forecasts.</span>
+            <span class="rail-cta">Open the weather center <span aria-hidden="true">→</span></span>
+          </a>
+
+          <div class="rail-card">
+            <span class="rail-eyebrow">Newsletter</span>
+            <span class="rail-title">Mississippi news in your inbox</span>
+            <span class="rail-text">Get the stories from across the network delivered by email.</span>
+            <a class="btn btn-navy" href="https://mississippinewsgroup.substack.com/" target="_blank"
+              rel="noopener">Subscribe free</a>
+          </div>
+
+          <a class="rail-card rail-card--hiring" href="/hiring" data-hiring-link hidden>
+            <span class="rail-eyebrow">Join the newsroom</span>
+            <span class="rail-title">We're hiring</span>
+            <span class="rail-text" id="hiringTeaser">See open positions at Mississippi News Group.</span>
+            <span class="rail-cta">View openings <span aria-hidden="true">→</span></span>
+          </a>
+
+          <div id="sidebar" class="rail-ads"><!--ssr:sidebar--><!--/ssr:sidebar--></div>
         </aside>
       </div>
     </section>
 
-    <section id="advertise" class="band" aria-label="Advertise with Mississippi News Group">
-      <div class="wrap band-inner">
-        <div class="band-copy">
-          <h2>Advertise with Mississippi News Group</h2>
-          <p>
-            Founded in 2013, Mississippi News Group publishes 17 websites, generates over 1 million page views per
-            month,
-            and reaches 600,000+ social media followers with 25 million+ monthly impressions on social media.
-          </p>
-          <ul class="bullets">
-            <li>Network-wide display + county-focused advertising packages</li>
-            <li>Sponsored content + native ad placements</li>
-            <li>Social media amplification and video opportunities</li>
-          </ul>
-          <a class="btn btn-gold" href="#contact">Request advertiser info</a>
-        </div>
-        <div class="band-card">
-          <div class="band-card-title">Fast facts</div>
-          <div class="facts">
-            <div class="fact"><span>Founded</span><strong>2013</strong></div>
-            <div class="fact"><span>Websites</span><strong>17</strong></div>
-            <div class="fact"><span>Monthly page views</span><strong>1M+</strong></div>
-            <div class="fact"><span>Social followers</span><strong>600K+</strong></div>
-            <div class="fact"><span>Monthly social reach</span><strong>25M+</strong></div>
+    <!-- ============ Communities ============ -->
+    <!-- Kept as plain HTML (not rendered from sites.js) so every link is crawlable. Update both together. -->
+    <section id="sites" class="section communities" aria-labelledby="sitesTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2 id="sitesTitle">Local Mississippi news by community</h2>
+            <p class="section-sub">Seventeen newsrooms, each focused on one place. Pick yours.</p>
           </div>
         </div>
+
+        <h3 class="group-title">Local news</h3>
+        <ul class="site-grid">
+          <li><a class="site" href="https://msnewsgroup.com" target="_blank" rel="noopener"><span
+                class="site-name">Mississippi News</span><span class="site-blurb">Statewide Mississippi
+                news</span><span class="site-url">msnewsgroup.com</span></a></li>
+          <li><a class="site" href="https://alcornnewsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Alcorn County News</span><span class="site-blurb">News from Corinth and Alcorn
+                County</span><span class="site-url">alcornnewsms.com</span></a></li>
+          <li><a class="site" href="https://desotocountynews.com" target="_blank" rel="noopener"><span
+                class="site-name">DeSoto County News</span><span class="site-blurb">News from Southaven, Olive
+                Branch, Hernando and Horn Lake</span><span class="site-url">desotocountynews.com</span></a></li>
+          <li><a class="site" href="https://mississippideltareport.com" target="_blank" rel="noopener"><span
+                class="site-name">Mississippi Delta Report</span><span class="site-blurb">News from across the
+                Mississippi Delta</span><span class="site-url">mississippideltareport.com</span></a></li>
+          <li><a class="site" href="https://oxfordmsnews.com" target="_blank" rel="noopener"><span
+                class="site-name">Oxford News</span><span class="site-blurb">News from Oxford and Lafayette
+                County</span><span class="site-url">oxfordmsnews.com</span></a></li>
+          <li><a class="site" href="https://pontotocnews.com" target="_blank" rel="noopener"><span
+                class="site-name">Pontotoc News</span><span class="site-blurb">News from Pontotoc and Pontotoc
+                County</span><span class="site-url">pontotocnews.com</span></a></li>
+          <li><a class="site" href="https://prentissnews.com" target="_blank" rel="noopener"><span
+                class="site-name">Prentiss County News</span><span class="site-blurb">News from Booneville and
+                Prentiss County</span><span class="site-url">prentissnews.com</span></a></li>
+          <li><a class="site" href="https://tippahnews.com" target="_blank" rel="noopener"><span
+                class="site-name">Tippah County News</span><span class="site-blurb">News from Ripley and Tippah
+                County</span><span class="site-url">tippahnews.com</span></a></li>
+          <li><a class="site" href="https://newstupelo.com" target="_blank" rel="noopener"><span
+                class="site-name">Tupelo News</span><span class="site-blurb">News from Tupelo and Lee
+                County</span><span class="site-url">newstupelo.com</span></a></li>
+          <li><a class="site" href="https://unionnewsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Union County News</span><span class="site-blurb">News from New Albany and Union
+                County</span><span class="site-url">unionnewsms.com</span></a></li>
+        </ul>
+
+        <h3 class="group-title">Local sports</h3>
+        <ul class="site-grid">
+          <li><a class="site site--sports" href="https://sportsmississippi.com" target="_blank" rel="noopener"><span
+                class="site-name">Mississippi Sports</span><span class="site-blurb">Statewide Mississippi
+                sports</span><span class="site-url">sportsmississippi.com</span></a></li>
+          <li><a class="site site--sports" href="https://alcornsportsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Alcorn County Sports</span><span class="site-blurb">Sports coverage from Corinth
+                and Alcorn County</span><span class="site-url">alcornsportsms.com</span></a></li>
+          <li><a class="site site--sports" href="https://bentonsportsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Benton County Sports</span><span class="site-blurb">Sports coverage from Ashland
+                and Benton County</span><span class="site-url">bentonsportsms.com</span></a></li>
+          <li><a class="site site--sports" href="https://leesportsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Lee County Sports</span><span class="site-blurb">Sports coverage from Tupelo and
+                Lee County</span><span class="site-url">leesportsms.com</span></a></li>
+          <li><a class="site site--sports" href="https://prentisssportsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Prentiss County Sports</span><span class="site-blurb">Sports coverage from
+                Booneville and Prentiss County</span><span class="site-url">prentisssportsms.com</span></a></li>
+          <li><a class="site site--sports" href="https://tippahsports.com" target="_blank" rel="noopener"><span
+                class="site-name">Tippah County Sports</span><span class="site-blurb">Sports coverage from Ripley
+                and Tippah County</span><span class="site-url">tippahsports.com</span></a></li>
+          <li><a class="site site--sports" href="https://unionsportsms.com" target="_blank" rel="noopener"><span
+                class="site-name">Union County Sports</span><span class="site-blurb">Sports coverage from New
+                Albany and Union County</span><span class="site-url">unionsportsms.com</span></a></li>
+        </ul>
       </div>
     </section>
 
-    <section id="sites" class="section wrap" aria-label="Our websites">
-      <div class="section-head">
-        <div>
-          <h2>Our websites</h2>
-          <div class="sub">Visit any publication in the Mississippi News Group network.</div>
+    <!-- ============ About ============ -->
+    <section id="about" class="section about" aria-labelledby="aboutTitle">
+      <div class="wrap about-inner">
+        <div class="about-copy">
+          <h2 id="aboutTitle">About Mississippi News Group</h2>
+          <p>Mississippi News Group is a network of 17 local news and sports websites covering communities across
+            Mississippi. Since 2013, our newsrooms have reported the stories that matter close to home — community
+            news, schools, local government, events and sports.</p>
+          <p>This page brings every newsroom's latest headlines together in one place, so you can follow Mississippi
+            news statewide or go straight to your own community: DeSoto County, Oxford, Tupelo and Lee County,
+            Corinth and Alcorn County, Ripley and Tippah County, New Albany and Union County, Booneville and
+            Prentiss County, Pontotoc, Benton County and the Mississippi Delta.</p>
         </div>
+        <dl class="stats">
+          <div class="stat"><dt>Local websites</dt><dd>17</dd></div>
+          <div class="stat"><dt>Covering Mississippi since</dt><dd>2013</dd></div>
+          <div class="stat"><dt>Page views a month</dt><dd>1M+</dd></div>
+          <div class="stat"><dt>Social followers</dt><dd>600K+</dd></div>
+        </dl>
       </div>
-      <div id="sitesGrid" class="sites"></div>
     </section>
 
-    <section id="contact" class="section wrap" aria-label="Contact form">
-      <div class="section-head">
-        <div>
-          <h2>Get in touch</h2>
-          <div class="sub">Send a message to Mississippi News Group — for advertising inquiries, editorial
-            questions, or general feedback.</div>
+    <!-- ============ Advertise ============ -->
+    <section id="advertise" class="band" aria-labelledby="advertiseTitle">
+      <div class="wrap band-inner">
+        <div class="band-copy">
+          <p class="band-eyebrow">For local businesses</p>
+          <h2 id="advertiseTitle">Advertise with Mississippi News Group</h2>
+          <p>Founded in 2013, Mississippi News Group publishes 17 websites, generates over 1 million page views per
+            month, and reaches 600,000+ social media followers with 25 million+ monthly impressions on social
+            media.</p>
+          <ul class="bullets">
+            <li>Network-wide display and county-focused advertising packages</li>
+            <li>Sponsored content and native ad placements</li>
+            <li>Social media amplification and video opportunities</li>
+          </ul>
+          <a class="btn btn-gold" href="#contact" data-reason="Advertising">Request advertiser info</a>
         </div>
+        <dl class="band-stats">
+          <div><dt>Monthly page views</dt><dd>1M+</dd></div>
+          <div><dt>Social followers</dt><dd>600K+</dd></div>
+          <div><dt>Monthly social reach</dt><dd>25M+</dd></div>
+          <div><dt>Local websites</dt><dd>17</dd></div>
+        </dl>
       </div>
+    </section>
 
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="hidden">
-          <label>Don't fill this out: <input name="bot-field" /></label>
-        </p>
+    <!-- ============ Contact ============ -->
+    <section id="contact" class="section contact" aria-labelledby="contactTitle">
+      <div class="wrap contact-inner">
+        <div class="contact-copy">
+          <h2 id="contactTitle">Get in touch</h2>
+          <p>Have a news tip, an advertising question or feedback? Send us a message and the right person will get
+            back to you.</p>
+          <ul class="contact-list">
+            <li><strong>News tips &amp; corrections</strong> — choose “Editorial”</li>
+            <li><strong>Advertising &amp; sponsorships</strong> — choose “Advertising”</li>
+            <li><strong>Site problems</strong> — choose “Technical”</li>
+          </ul>
+        </div>
 
-        <div class="form-row">
+        <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field"
+          class="form">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden>
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <label>
+              <span>Your email</span>
+              <input name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+            </label>
+            <label>
+              <span>Reason</span>
+              <select name="reason" id="reason" required>
+                <option value="General">General</option>
+                <option value="Advertising">Advertising</option>
+                <option value="Editorial">Editorial</option>
+                <option value="Technical">Technical</option>
+              </select>
+            </label>
+          </div>
+
           <label>
-            Your email
-            <input name="email" type="email" placeholder="you@example.com" required />
+            <span>Message</span>
+            <textarea name="message" placeholder="How can we help?" rows="6" required></textarea>
           </label>
-          <label>
-            Reason
-            <select name="reason" required>
-              <option value="General">General</option>
-              <option value="Advertising">Advertising</option>
-              <option value="Editorial">Editorial</option>
-              <option value="Technical">Technical</option>
-            </select>
-          </label>
-        </div>
 
-        <label>
-          Message
-          <textarea name="message" placeholder="How can we help?" rows="7" required></textarea>
-        </label>
-
-        <button class="btn btn-primary" type="submit">Send message</button>
-      </form>
-    </section>
-
-    <footer class="footer" role="contentinfo">
-      <div class="wrap footer-inner">
-        <div>© 2026 Mississippi News Group • <a href="https://mississippinewsgroup.com">mississippinewsgroup.com</a>
-        </div>
-        <div class="fine">Aggregating local Mississippi news since 2013.</div>
+          <button class="btn btn-navy" type="submit">Send message</button>
+        </form>
       </div>
-    </footer>
+    </section>
   </main>
 
-  <!-- Hiring Modal -->
-  <div id="hiringOverlay" class="hiring-overlay" hidden></div>
-  <div id="hiringModal" class="hiring-modal" hidden>
-    <div class="hiring-modal-inner">
-      <div class="hiring-modal-head">
-        <div class="hiring-modal-title">🔥 Now Hiring</div>
-        <button id="hiringClose" class="hiring-close" type="button" aria-label="Close hiring modal">✕</button>
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand">
+        <a class="brand brand--footer" href="/" aria-label="Mississippi News Group — home">
+          <img class="brand-logo" src="/assets/logo-96.png" alt="" width="44" height="44" loading="lazy" />
+          <span class="brand-name">Mississippi News Group</span>
+        </a>
+        <p>Local Mississippi news and sports from 17 community newsrooms, since 2013.</p>
       </div>
-      <div id="hiringContent" class="hiring-content">
-        <!-- Positions loaded from hiring.json via JS -->
-      </div>
-    </div>
-  </div>
 
-  <script type="module" src="app.js"></script>
+      <nav class="footer-col" aria-label="Footer">
+        <p class="footer-title">Mississippi News Group</p>
+        <a href="#latest">Latest headlines</a>
+        <a href="/weather">Mississippi weather</a>
+        <a href="#about">About</a>
+        <a href="#advertise">Advertise</a>
+        <a href="#contact">Contact</a>
+        <a href="https://mississippinewsgroup.substack.com/" target="_blank" rel="noopener">Newsletter</a>
+      </nav>
+
+      <nav class="footer-col footer-col--wide" aria-label="Network news sites">
+        <p class="footer-title">News</p>
+        <div class="footer-links">
+          <a href="https://msnewsgroup.com" target="_blank" rel="noopener">Mississippi News</a>
+          <a href="https://alcornnewsms.com" target="_blank" rel="noopener">Alcorn County News</a>
+          <a href="https://desotocountynews.com" target="_blank" rel="noopener">DeSoto County News</a>
+          <a href="https://mississippideltareport.com" target="_blank" rel="noopener">Mississippi Delta Report</a>
+          <a href="https://oxfordmsnews.com" target="_blank" rel="noopener">Oxford News</a>
+          <a href="https://pontotocnews.com" target="_blank" rel="noopener">Pontotoc News</a>
+          <a href="https://prentissnews.com" target="_blank" rel="noopener">Prentiss County News</a>
+          <a href="https://tippahnews.com" target="_blank" rel="noopener">Tippah County News</a>
+          <a href="https://newstupelo.com" target="_blank" rel="noopener">Tupelo News</a>
+          <a href="https://unionnewsms.com" target="_blank" rel="noopener">Union County News</a>
+        </div>
+      </nav>
+
+      <nav class="footer-col" aria-label="Network sports sites">
+        <p class="footer-title">Sports</p>
+        <a href="https://sportsmississippi.com" target="_blank" rel="noopener">Mississippi Sports</a>
+        <a href="https://alcornsportsms.com" target="_blank" rel="noopener">Alcorn County Sports</a>
+        <a href="https://bentonsportsms.com" target="_blank" rel="noopener">Benton County Sports</a>
+        <a href="https://leesportsms.com" target="_blank" rel="noopener">Lee County Sports</a>
+        <a href="https://prentisssportsms.com" target="_blank" rel="noopener">Prentiss County Sports</a>
+        <a href="https://tippahsports.com" target="_blank" rel="noopener">Tippah County Sports</a>
+        <a href="https://unionsportsms.com" target="_blank" rel="noopener">Union County Sports</a>
+      </nav>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span id="year">2026</span> Mississippi News Group. All rights reserved.</span>
+      <a href="#main">Back to top <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <button id="newStories" class="new-pill" type="button" hidden>New stories — tap to update</button>
+
+  <!-- Now Hiring -->
+  <dialog id="hiringModal" class="modal" aria-labelledby="hiringTitle">
+    <div class="modal-head">
+      <h2 id="hiringTitle">Now hiring</h2>
+      <button id="hiringClose" class="modal-close" type="button" aria-label="Close">✕</button>
+    </div>
+    <div id="hiringContent" class="modal-body">
+      <!-- Positions loaded from content/hiring.json -->
+    </div>
+  </dialog>
+
+  <!--ssr:data--><!--/ssr:data-->
+  <script type="module" src="/app.js"></script>
 </body>
 
 </html>

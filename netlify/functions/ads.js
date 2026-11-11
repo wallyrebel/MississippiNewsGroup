@@ -45,21 +45,27 @@ function getActiveAds() {
     return ads;
 }
 
-exports.handler = async (event) => {
+// Active ads grouped by position. Also used by home.js when it pre-renders the front page.
+function getGroupedAds() {
     const ads = getActiveAds();
-
-    // Group by position
-    const grouped = {
+    return {
         inline: ads.filter(a => a.position === "inline"),
         sidebar: ads.filter(a => a.position === "sidebar"),
         banner: ads.filter(a => a.position === "banner")
     };
+}
+
+exports.getGroupedAds = getGroupedAds;
+
+exports.handler = async (event) => {
+    const grouped = getGroupedAds();
 
     return {
         statusCode: 200,
         headers: {
             "Content-Type": "application/json; charset=utf-8",
-            "Cache-Control": "public, max-age=300" // 5 minutes
+            "Cache-Control": "public, max-age=300", // 5 minutes
+            "X-Robots-Tag": "noindex"
         },
         body: JSON.stringify(grouped)
     };

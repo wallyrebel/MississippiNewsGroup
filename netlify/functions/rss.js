@@ -93,7 +93,7 @@ function excerptFrom(item) {
 
 async function fetchFeed(site, perSiteLimit) {
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 9000);
+  const t = setTimeout(() => controller.abort(), 8000);
 
   try {
     // rss-parser can take a URL, but we fetch ourselves to ensure redirects/timeouts behave.
@@ -191,13 +191,29 @@ exports.handler = async (event) => {
   // Sort newest first; fall back to 0 date
   items.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
 
-  items = items.slice(0, limit);
+  // Take the newest stories overall, then make sure every site that returned
+  // anything keeps its two most recent, so quieter newsrooms don't vanish when
+  // a reader filters the front page by community.
+  const PER_SITE_MIN = 2;
+  const newest = items.slice(0, limit);
+  const kept = new Map();
+  for (const it of newest) kept.set(it.site, (kept.get(it.site) || 0) + 1);
+  for (const it of items.slice(limit)) {
+    const n = kept.get(it.site) || 0;
+    if (it.isLocal || n >= PER_SITE_MIN) continue;
+    newest.push(it);
+    kept.set(it.site, n + 1);
+  }
+  items = newest;
 
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "public, max-age=300" // 5 minutes
+      "Cache-Control": "public, max-age=300", // 5 minutes
+      // Let Netlify's CDN answer instantly with the last copy while it refetches the feeds.
+      "Netlify-CDN-Cache-Control": "public, durable, s-maxage=300, stale-while-revalidate=1800",
+      "X-Robots-Tag": "noindex"
     },
     body: JSON.stringify({ items })
   };

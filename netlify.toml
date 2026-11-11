@@ -1,7 +1,18 @@
 [functions]
   node_bundler = "esbuild"
   directory = "netlify/functions"
-  included_files = ["content/**"]
+  # content/** is read by the ads and rss functions; index.html is the template
+  # the home function fills with the latest stories.
+  included_files = ["content/**", "index.html"]
+
+# Front page: served by the home function so the latest headlines are in the HTML
+# itself (good for search engines and first paint). The static index.html is the
+# template and the fallback — see netlify/functions/home.js.
+[[redirects]]
+  from = "/"
+  to = "/.netlify/functions/home"
+  status = 200
+  force = true
 
 # Redirect for admin panel
 [[redirects]]
@@ -25,6 +36,28 @@
   from = "/weather"
   to = "/weather/index.html"
   status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+# Keep the CMS and the form confirmation page out of search results.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/thanks/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/weather/*"

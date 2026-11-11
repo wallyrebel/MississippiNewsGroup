@@ -2,8 +2,9 @@
   "name": "mississippinewsgroup-hub",
   "private": true,
   "version": "1.0.0",
-  "description": "Static hub site + Netlify Function to merge RSS feeds",
+  "description": "Mississippi News Group hub: static front page + Netlify Functions that merge the network RSS feeds",
   "scripts": {
+    "dev": "node scripts/dev.js",
     "dev:weather": "node scripts/weather-dev.js",
     "test:weather": "node --test tests/weather.test.js"
   },
