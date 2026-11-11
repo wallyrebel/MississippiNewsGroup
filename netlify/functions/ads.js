@@ -45,7 +45,7 @@ function getActiveAds() {
     return ads;
 }
 
-// Active ads grouped by position. Also used by home.js when it pre-renders the front page.
+// Active ads grouped by position. Exported so other functions can reuse it.
 function getGroupedAds() {
     const ads = getActiveAds();
     return {

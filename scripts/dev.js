@@ -3,6 +3,7 @@
 // pushing:  npm run dev  →  http://127.0.0.1:4174
 //
 //   /                      → home function (front page with stories pre-rendered)
+//                            home.mjs uses Netlify's Request → Response API
 //   /index.html            → the raw template (what readers get if home fails)
 //   /.netlify/functions/*  → the function handlers
 const http = require('node:http');
@@ -17,7 +18,9 @@ const mime = {
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.xml': 'application/xml', '.txt': 'text/plain; charset=utf-8',
   '.webmanifest': 'application/manifest+json',
 };
-const functions = ['home', 'rss', 'ads', 'weather-data', 'weather-cameras'];
+const { pathToFileURL } = require('node:url');
+const functions = ['rss', 'ads', 'weather-data', 'weather-cameras'];
+const homeModule = import(pathToFileURL(path.join(root, 'netlify/functions/home.mjs')).href);
 const handlers = Object.fromEntries(
   functions.map((name) => [`/.netlify/functions/${name}`, require(`../netlify/functions/${name}`).handler])
 );
@@ -29,7 +32,15 @@ http.createServer(async (req, res) => {
     const url = new URL(req.url, `http://127.0.0.1:${port}`);
     let pathname = decodeURIComponent(url.pathname);
 
-    const fn = pathname === '/' ? '/.netlify/functions/home' : pathname;
+    if (pathname === '/') {
+      const home = (await homeModule).default;
+      const response = await home(new Request(url.href, { headers: { host: url.host } }), {});
+      res.writeHead(response.status, Object.fromEntries(response.headers));
+      res.end(await response.text());
+      return;
+    }
+
+    const fn = pathname;
     if (handlers[fn]) {
       const result = await handlers[fn]({
         httpMethod: req.method,

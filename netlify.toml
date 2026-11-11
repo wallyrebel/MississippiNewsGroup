@@ -5,14 +5,9 @@
   # the home function fills with the latest stories.
   included_files = ["content/**", "index.html"]
 
-# Front page: served by the home function so the latest headlines are in the HTML
-# itself (good for search engines and first paint). The static index.html is the
-# template and the fallback — see netlify/functions/home.js.
-[[redirects]]
-  from = "/"
-  to = "/.netlify/functions/home"
-  status = 200
-  force = true
+# Front page: "/" is served by netlify/functions/home.mjs (routed by its own
+# config.path, not a redirect here) so the latest headlines are in the HTML itself.
+# The static index.html is its template and its fallback.
 
 # Redirect for admin panel
 [[redirects]]
@@ -42,6 +37,11 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
 
 [[headers]]
   for = "/assets/*"
