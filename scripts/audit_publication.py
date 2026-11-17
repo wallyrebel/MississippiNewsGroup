@@ -13,6 +13,8 @@ from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 CENTRAL = ZoneInfo("America/Chicago")
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,9 +23,14 @@ EXCLUDED_SITES = {"https://bentonsportsms.com", "https://leesportsms.com", "http
 
 
 def get(url, **kwargs):
-    response = requests.get(url, headers=HEADERS, timeout=(7, 22), **kwargs)
-    response.raise_for_status()
-    return response
+    # Retry only reads. Keep the check bounded when a site is down or overloaded.
+    retry = Retry(total=2, backoff_factor=0.5, status_forcelist=(429, 500, 502, 503, 504),
+                  allowed_methods={"GET"}, respect_retry_after_header=False)
+    with requests.Session() as session:
+        session.mount("https://", HTTPAdapter(max_retries=retry))
+        response = session.get(url, headers=HEADERS, timeout=(7, 22), **kwargs)
+        response.raise_for_status()
+        return response
 
 
 def wordpress(home, day):
@@ -114,23 +121,28 @@ def inspect(site, day):
 
 
 def main():
-    yesterday = datetime.now(CENTRAL).date() - timedelta(days=1)
+    today = datetime.now(CENTRAL).date()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--day", type=date.fromisoformat, default=yesterday)
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--day", type=date.fromisoformat)
+    selection.add_argument("--current-day", action="store_true", help="Check today's progress before the final audit")
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
-    if args.day > yesterday:
+    if args.day is not None and args.day >= today:
         parser.error("Select a completed Chicago calendar day")
+    args.day = args.day or (today if args.current_day else today - timedelta(days=1))
     catalog = (ROOT / "sites.js").read_text(encoding="utf-8").split("const SITES =", 1)[1].lstrip()
     sites, _ = json.JSONDecoder().raw_decode(catalog)
     sites = [site for site in sites if site["home"] not in EXCLUDED_SITES]
     sites.append({"name": "RCTV19", "home": "https://rctv19.com"})
     with ThreadPoolExecutor(max_workers=5) as pool:
         results = list(pool.map(lambda site: inspect(site, args.day), sites))
-    report = {"chicago_day": args.day.isoformat(), "sites": results}
+    report = {"chicago_day": args.day.isoformat(), "day_in_progress": args.current_day,
+              "checked_at": datetime.now(CENTRAL).isoformat(timespec="minutes"), "sites": results}
     if args.report:
         args.report.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
-    lines = [f"## Public article output for {args.day}", "",
+    label = "Public articles so far" if args.current_day else "Final public article output"
+    lines = [f"## {label} for {args.day}", "",
              "Two distinct noncommercial posts is the minimum. All additional posts are counted. "
              "The artifact lists headlines and links for editorial review. Public totals include every producer.",
              "", "| Site | Public posts | Distinct noncommercial | Result |", "|---|---:|---:|---|"]
@@ -155,6 +167,8 @@ def main():
     if os.getenv("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as out:
             print(summary, file=out)
+    if args.current_day:
+        return int(any(r["state"] in {"unverified", "incomplete feed"} for r in results))
     return int(not majority or any(r["state"] != "met" for r in results))
 
 
