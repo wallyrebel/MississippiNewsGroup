@@ -65,7 +65,7 @@ def rctv(home, day):
 
 
 def review_posts(rows):
-    articles, titles = [], set()
+    articles, titles, bodies = [], set(), set()
     for title, url, body in rows:
         title = BeautifulSoup(title, "html.parser").get_text(" ", strip=True)
         soup = BeautifulSoup(body, "html.parser")
@@ -73,6 +73,7 @@ def review_posts(rows):
             tag.decompose()
         text = soup.get_text(" ", strip=True)
         normalized = " ".join(re.findall(r"\w+", title.casefold()))
+        body_words = " ".join(re.findall(r"\w+", text.casefold()))
         flags = []
         if "as an amazon associate" in text.casefold() or "earn from qualifying purchases" in text.casefold():
             flags.append("affiliate shopping")
@@ -80,9 +81,21 @@ def review_posts(rows):
             flags.append("empty title or body")
         if normalized in titles:
             flags.append("repeated headline")
+        if body_words and body_words == normalized:
+            flags.append("body repeats headline")
+        elif body_words in bodies:
+            flags.append("repeated article text")
         if not flags:
             titles.add(normalized)
-        articles.append({"title": title, "link": url, "words": len(text.split()), "exclusions": flags})
+            bodies.add(body_words)
+        words = len(text.split())
+        review = []
+        if not flags and words < 45:
+            review.append("under 45 words")
+        if not flags and "the forecast area" in text.casefold():
+            review.append("check that the forecast names the affected area")
+        articles.append({"title": title, "link": url, "words": words,
+                         "exclusions": flags, "editorial_review": review})
     return articles
 
 
@@ -129,6 +142,14 @@ def main():
     majority = above_two > len(results) // 2
     lines += ["", f"{above_two} of {len(results)} sites have three or more distinct noncommercial posts. "
               f"Network majority goal: {'met' if majority else 'unconfirmed or below target'}."]
+    flagged = [(r["site"], article) for r in results for article in r.get("articles", [])
+               if article["editorial_review"]]
+    if flagged:
+        lines += ["", f"### Editorial spot checks ({len(flagged)} articles)", "",
+                  "These briefs count toward public output. Check their sources and whether readers get the details they need.", ""]
+        for site, article in flagged:
+            # Keep publisher-supplied text out of GitHub Markdown links.
+            lines.append(f"- {site} · {article['words']} words · {', '.join(article['editorial_review'])} · <{article['link']}>")
     summary = "\n".join(lines)
     print(summary)
     if os.getenv("GITHUB_STEP_SUMMARY"):
