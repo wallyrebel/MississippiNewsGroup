@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 CENTRAL = ZoneInfo("America/Chicago")
 ROOT = Path(__file__).resolve().parents[1]
 HEADERS = {"User-Agent": "MississippiNewsGroup/1.0 (public coverage check)"}
+EXCLUDED_SITES = {"https://bentonsportsms.com", "https://leesportsms.com", "https://prentisssportsms.com"}
 
 
 def get(url, **kwargs):
@@ -109,6 +110,7 @@ def main():
         parser.error("Select a completed Chicago calendar day")
     catalog = (ROOT / "sites.js").read_text(encoding="utf-8").split("const SITES =", 1)[1].lstrip()
     sites, _ = json.JSONDecoder().raw_decode(catalog)
+    sites = [site for site in sites if site["home"] not in EXCLUDED_SITES]
     sites.append({"name": "RCTV19", "home": "https://rctv19.com"})
     with ThreadPoolExecutor(max_workers=5) as pool:
         results = list(pool.map(lambda site: inspect(site, args.day), sites))
