@@ -61,7 +61,8 @@ def inspect(entry):
             metadata = session.get(base, timeout=(5, 15))
             metadata.raise_for_status()
             record["workflow_state"] = metadata.json()["state"]
-            response = session.get(base + "/runs", params={"event": "schedule", "branch": "main", "per_page": 10},
+            # GitHub schedules run on the default branch, including DeSoto's master.
+            response = session.get(base + "/runs", params={"event": "schedule", "per_page": 10},
                                    timeout=(5, 15))
             response.raise_for_status()
             runs = response.json()["workflow_runs"]
