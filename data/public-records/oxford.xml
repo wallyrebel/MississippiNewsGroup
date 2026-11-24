@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>Oxford local public records</title>
+    <link>https://oxfordmsnews.com/</link>
+    <description>Local reporting records with original sources for Oxford and Lafayette County.</description>
+    <item>
+      <title>Oxford food drive takes cans Tuesday afternoon and at the Thanksgiving Turkey Trot</title>
+      <link>https://eventcalendar.olemiss.edu/event/11th-annual-turkey-trot-thanksgiving-fun-runwalk</link>
+      <pubDate>Tue, 24 Nov 2026 19:08:22 GMT</pubDate>
+      <description>The University of Mississippi lists Tuesday, November 24, from 3:45 p.m. to 6:15 p.m. as the last advance drop-off for canned goods for its 11th annual Thanksgiving Turkey Trot. The advance location is the South Campus Recreation Center lobby in Oxford. Donors may bring 10 canned goods for an event T-shirt, while supplies last. The run and walk are free. Donations benefit Grove Grocery and the Oxford Food Pantry. On Thanksgiving Day, Thursday November 26, the event runs from 8:30 a.m. to 10:30 a.m. at the South Campus Rail Trail, 980 Whirlpool Drive. Participants choose their distance. There is another donation window at the trailhead at 8:30 a.m. on Thursday. Coffee and light refreshments are offered. Campus Recreation lists 662-915-4079 and campusrec@olemiss.edu for accessibility arrangements. The separate university pantry page identifies Grove Grocery as the campus food pantry, located in Kinard Hall. Sources: https://eventcalendar.olemiss.edu/event/11th-annual-turkey-trot-thanksgiving-fun-runwalk and https://olemiss.edu/grovegrocery/.</description>
+      <guid isPermaLink="false">oxford-campus-turkey-trot-2026-11-26</guid>
+      <source url="https://eventcalendar.olemiss.edu/event/11th-annual-turkey-trot-thanksgiving-fun-runwalk">University of Mississippi Campus Recreation</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/oxford-campus-turkey-trot-2026-11-26.png" type="image/png" medium="image" width="1440" height="810">
+        <media:description>Thanksgiving on the rail trail. Tuesday drop-off 3:45–6:15 p.m.. Thursday walk 8:30–10:30 a.m.. Original newsroom graphic.</media:description>
+      </media:content>
+    </item>
+    <item>
+      <title>Lafayette County unemployment rises to 3.0% in October</title>
+      <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
+      <pubDate>Tue, 24 Nov 2026 19:08:22 GMT</pubDate>
+      <description>Lafayette County, Mississippi, including Oxford. The October 2026 preliminary residence-based estimates in the Mississippi Department of Employment Security report put the local unemployment rate at 3.0% in October after a revised 2.4% in September. The August rate was 2.6%. The department counts 30,604 county residents in the October civilian labor force. Of them 29,701 were employed and 903 were unemployed. In September the labor force numbered 30,523, with 29,785 employed and 738 unemployed. The unemployed total rose by 165 residents. The employed count fell by 84. The change in the civilian labor force was +81 people. The survey describes people age 16 and older by where they live. A resident who commutes outside the county remains part of the county residence-based estimates. These counts should not be described as employers adding or eliminating positions. The number unemployed and the number employed together equal the civilian labor force in each month. The comparable Mississippi rate was 3.6%, based on 45,914 unemployed and 1,214,626 employed residents in a civilian labor force of 1,260,540. Both state and county figures in this comparison are unadjusted for seasonal changes. A separate county table in the same release lists 18 initial unemployment insurance claims and 181 continued claims in October compared with 24 initial and 212 continued claims in September. Insurance claims are an administrative measure. They should not be added together or treated as the number of unemployed residents. September is revised and October is preliminary. The tables do not establish what caused any change. The department’s county series gives these monthly rates earlier in 2026: June 3.2%, July 3.4%, August 2.6%, September 2.4%, October 3.0%. Source documents: https://mdes.ms.gov/media/23357/labormarketdata.pdf (labor force estimates and county unemployment insurance claims); https://mdes.ms.gov/media/8735/urate.pdf (county monthly unemployment series); https://mdes.ms.gov/media/8654/uratesmapbw.pdf (October county unemployment rate map).</description>
+      <guid isPermaLink="false">lafayette-county-labor-market-2026-10</guid>
+      <source url="https://mdes.ms.gov/media/23357/labormarketdata.pdf">Mississippi Department of Employment Security</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/lafayette-county-labor-market-2026-10.png" type="image/png" medium="image" width="1440" height="810">
+        <media:description>Lafayette County unemployment. September 2.4%. October 3.0%. Original newsroom graphic.</media:description>
+      </media:content>
+    </item>
+  </channel>
+</rss>

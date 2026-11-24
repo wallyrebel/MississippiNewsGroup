@@ -1,9 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0">
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
     <title>Mississippi News Group public records desk</title>
     <link>https://prentissnews.com/</link>
     <description>Verified public records for Prentiss County, Mississippi, with the original authority identified on each item.</description>
+    <item>
+      <title>Prentiss County unemployment rises to 3.7% in October</title>
+      <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
+      <pubDate>Tue, 24 Nov 2026 19:08:22 GMT</pubDate>
+      <description>Prentiss County, Mississippi, including Booneville. The October 2026 preliminary residence-based estimates in the Mississippi Department of Employment Security report put the local unemployment rate at 3.7% in October after a revised 3.2% in September. The August rate was 3.1%. The department counts 9,823 county residents in the October civilian labor force. Of them 9,459 were employed and 364 were unemployed. In September the labor force numbered 9,918, with 9,602 employed and 316 unemployed. The unemployed total rose by 48 residents. The employed count fell by 143. The change in the civilian labor force was -95 people. The survey describes people age 16 and older by where they live. A resident who commutes outside the county remains part of the county residence-based estimates. These counts should not be described as employers adding or eliminating positions. The number unemployed and the number employed together equal the civilian labor force in each month. The comparable Mississippi rate was 3.6%, based on 45,914 unemployed and 1,214,626 employed residents in a civilian labor force of 1,260,540. Both state and county figures in this comparison are unadjusted for seasonal changes. A separate county table in the same release lists 27 initial unemployment insurance claims and 119 continued claims in October compared with 16 initial and 123 continued claims in September. Insurance claims are an administrative measure. They should not be added together or treated as the number of unemployed residents. September is revised and October is preliminary. The tables do not establish what caused any change. The department’s county series gives these monthly rates earlier in 2026: June 3.9%, July 3.7%, August 3.1%, September 3.2%, October 3.7%. Source documents: https://mdes.ms.gov/media/23357/labormarketdata.pdf (labor force estimates and county unemployment insurance claims); https://mdes.ms.gov/media/8735/urate.pdf (county monthly unemployment series); https://mdes.ms.gov/media/8654/uratesmapbw.pdf (October county unemployment rate map).</description>
+      <guid isPermaLink="false">prentiss-county-labor-market-2026-10</guid>
+      <source url="https://mdes.ms.gov/media/23357/labormarketdata.pdf">Mississippi Department of Employment Security</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/prentiss-county-labor-market-2026-10.png" type="image/png" medium="image" width="1440" height="810">
+        <media:description>Prentiss County unemployment. September 3.2%. October 3.7%. Original newsroom graphic.</media:description>
+      </media:content>
+    </item>
     <item>
       <title>Booneville forecast puts heaviest Thanksgiving travel rain Wednesday, with a low of 26 Thursday night</title>
       <link>https://api.weather.gov/products/3218faa4-7129-45e3-b507-da8c940a1ad6</link>
