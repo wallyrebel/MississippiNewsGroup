@@ -20,3 +20,13 @@ class PublicCoverageTests(unittest.TestCase):
         self.assertIn("body repeats headline", posts[2]["exclusions"])
         self.assertEqual(posts[3]["exclusions"], [])
         self.assertEqual(len(posts[3]["editorial_review"]), 2)
+
+    def test_overlapping_forecasts_get_editorial_review(self):
+        posts = review_posts([
+            ("Rain overnight", "/early", "The National Weather Service in Jackson expects widespread rain tonight into Wednesday. Higher rainfall totals are more likely along and east of Interstate 55."),
+            ("Wednesday forecast", "/later", "The National Weather Service in Jackson expects widespread rain tonight through Wednesday, with higher rainfall totals more likely along and east of Interstate 55."),
+            ("Flood warning", "/distinct", "Flooding closed Oak Street and the county bridge Monday. The sheriff opened an emergency shelter at the high school."),
+        ])
+        self.assertIn("check for overlapping coverage with another brief", posts[1]["editorial_review"])
+        self.assertEqual(posts[1]["exclusions"], [])
+        self.assertEqual(posts[2]["editorial_review"], ["under 45 words"])

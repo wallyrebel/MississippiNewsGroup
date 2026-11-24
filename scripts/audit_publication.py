@@ -73,6 +73,7 @@ def rctv(home, day):
 
 def review_posts(rows):
     articles, titles, bodies = [], set(), set()
+    short_briefs = []
     for title, url, body in rows:
         title = BeautifulSoup(title, "html.parser").get_text(" ", strip=True)
         soup = BeautifulSoup(body, "html.parser")
@@ -99,6 +100,13 @@ def review_posts(rows):
         review = []
         if not flags and words < 45:
             review.append("under 45 words")
+            # Briefs about the same event can have separate source URLs and headlines.
+            # Leave changed facts and all decisions about publication to the editor.
+            tokens = set(body_words.split()) - {"source", "original", "article", "the", "a", "an", "of", "and", "to", "in"}
+            if len(tokens) >= 12:
+                if any(len(tokens & other) / len(tokens | other) >= 0.70 for other in short_briefs):
+                    review.append("check for overlapping coverage with another brief")
+                short_briefs.append(tokens)
         if not flags and "the forecast area" in text.casefold():
             review.append("check that the forecast names the affected area")
         articles.append({"title": title, "link": url, "words": words,
