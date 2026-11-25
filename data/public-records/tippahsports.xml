@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>Tippah County Sports verified local records</title>
+    <link>https://tippahsports.com/</link>
+    <description>Tippah County sports reporting from school, college and competition records.</description>
+    <item>
+      <title>Walnut hosts Alcorn Central while Pine Grove opens region play against Thrasher</title>
+      <link>https://www.maxpreps.com/ms/walnut/walnut-wildcats/basketball/schedule/</link>
+      <pubDate>Wed, 25 Nov 2026 19:14:18 GMT</pubDate>
+      <description>Two Tippah County gyms will host varsity basketball doubleheaders on Tuesday, December 1. At Walnut, the girls face Alcorn Central at 6 p.m. and the boys play at 7:30. At Pine Grove, the girls host Thrasher at 6 and the boys schedule lists a 7 p.m. start. Pine Grove’s team schedules mark both Thrasher games as region contests. The games at Walnut are listed without the region designation. Walnut’s boys enter the break with three straight wins. They beat Strayhorn 64–49, Belmont 53–50 and Jumpertown 64–51. The Alcorn Central boys beat South Pontotoc and Itawamba Agricultural on consecutive days, both by seven. Their schedule also includes Holly Springs on November 27 before the trip to Walnut. The Walnut girls go into the holiday off a 61–26 win over Lafayette after falling to Wheeler 64–54. Pine Grove’s most recent posted varsity games were at Ingomar on November 20. The boys won 60–36, while the girls lost 75–44. The Panthers’ available boys results include wins over Houlka in overtime, East Union, Ashland and Blue Mountain. After Tuesday’s home region games, both Pine Grove teams go to Wheeler for region games Friday, December 4; Walnut’s teams travel to Bruce that day. Sources: https://www.maxpreps.com/ms/walnut/walnut-wildcats/basketball/schedule/ (Walnut boys); https://www.maxpreps.com/ms/walnut/walnut-wildcats/basketball/girls/schedule/ (Walnut girls); https://www.maxpreps.com/ms/ripley/pine-grove-panthers/basketball/schedule/ (Pine Grove boys); https://www.maxpreps.com/ms/ripley/pine-grove-panthers/basketball/girls/schedule/ (Pine Grove girls); https://www.maxpreps.com/ms/glen/alcorn-central-bears/basketball/schedule/ (Alcorn Central boys).</description>
+      <guid isPermaLink="false">walnut-pine-grove-december-opener-thrasher-alcorn-2026</guid>
+      <source url="https://www.maxpreps.com/ms/walnut/walnut-wildcats/basketball/schedule/">Varsity team schedules and results on MaxPreps</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/walnut-pine-grove-december-opener-thrasher-alcorn-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
+      <title>Blue Mountain opens December with four conference doubleheaders at home</title>
+      <link>https://bmcusports.com/sports/mens-basketball/schedule</link>
+      <pubDate>Wed, 25 Nov 2026 19:14:18 GMT</pubDate>
+      <description>Blue Mountain Christian University will open December with four consecutive SSAC home dates for both basketball teams. Its separate men’s and women’s schedules agree on the opponents, days and sites. Point University comes to Blue Mountain Thursday, December 3, with the women at 5:30 p.m. and the men at 7:30 p.m. Life University visits Saturday, December 5, with the women at noon and men at 2 p.m. The following week brings the University of Mobile on Thursday, December 10 at 5:30 and 7:30 p.m., and William Carey on Saturday, December 12 at noon and 2 p.m. The earlier game on each date is the women’s game. These are the first home conference games for both squads this season. The men ended November 3–3 overall, 3–0 at home and 0–2 in league play. Their two road conference losses came by four at Faulkner and by two at Dalton State. The wins at home came against Rust, Stillman and Bethel. The women return after winning 91–52 at Wesleyan on November 21. They split their first two SSAC games, losing 76–60 at Faulkner before beating Wesleyan. The schedules diverge after the four paired dates: the men travel to Bethel December 15. Both teams host Tennessee Southern Thursday, December 17, with the women at 5 and men at 7 p.m. Sources: https://bmcusports.com/sports/mens-basketball/schedule and https://bmcusports.com/sports/womens-basketball/schedule . All times are local to the Blue Mountain home games.</description>
+      <guid isPermaLink="false">blue-mountain-december-ssac-home-basketball-2026</guid>
+      <source url="https://bmcusports.com/sports/mens-basketball/schedule">Blue Mountain Christian University Athletics</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/blue-mountain-december-ssac-home-basketball-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+  </channel>
+</rss>
