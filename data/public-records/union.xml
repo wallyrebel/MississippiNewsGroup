@@ -5,6 +5,24 @@
     <link>https://unionnewsms.com/</link>
     <description>Verified public records for Union County, Mississippi, with original sources for each item.</description>
     <item>
+      <title>New Albany and Union County students finish the fall term on different days</title>
+      <link>https://www.newalbanyschools.us/PDF/calendar27.pdf</link>
+      <pubDate>Wed, 25 Nov 2026 19:05:02 GMT</pubDate>
+      <description>Families getting ready for the return from Thanksgiving can plan for two different December school schedules in Union County, Mississippi. New Albany School District ends the nine-week grading period Friday, December 11. Its final student day before the holiday is Thursday, December 17, a 60% day. Friday, December 18 is a professional development day in the city district. Union County School District students attend through Friday, December 18. That is both their 60% day and the end of their nine-week grading period. The county district explicitly lists Monday, November 30 as its return from Thanksgiving break. Both official calendars mark November 23–27 as the holiday. Neither annual calendar gives a campus dismissal clock time for a 60% day. Both districts set Monday, January 4 for staff professional development. Students in both districts return Tuesday, January 5 and receive report cards Friday, January 8. New Albany official 2026–27 calendar: https://www.newalbanyschools.us/PDF/calendar27.pdf . Union County board-approved calendar: https://content.myconnectsuite.com/api/documents/1c9669e88956468c8d012be0b8586018 . County district return notice and calendar download: https://www.union.k12.ms.us/ .</description>
+      <guid isPermaLink="false">new-albany-union-county-december-school-calendar-2026</guid>
+      <source url="https://www.newalbanyschools.us/PDF/calendar27.pdf">New Albany School District and Union County School District</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/new-albany-union-county-december-school-calendar-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
+      <title>Severe drought holds across four-fifths of Union County</title>
+      <link>https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28145&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1</link>
+      <pubDate>Wed, 25 Nov 2026 19:05:02 GMT</pubDate>
+      <description>The November 24 table puts 80.16% of Union County, which includes New Albany, in severe drought or worse. The 2.28% in extreme drought is included in the 80.16%. No area reached exceptional drought. The remaining 19.84% was moderately dry. The severe-or-worse share held steady from November 17 after rising from 20.45% on November 10. On November 10, 1.13% of the county was extreme or worse. The percentages are shares of land area. Categories in the U.S. Drought Monitor table are cumulative; the more severe categories are included in the less severe ones. The national map is dated Tuesday, November 24, before Wednesday’s weather. The map does not measure subsequent rainfall. Statewide, extreme drought or worse covered 66.91% of Mississippi on November 24, up from 53.56% the week before. Sources: https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28145&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1 (county area percentages for November 10, 17 and 24); https://droughtmonitor.unl.edu/data/png/20261124/20261124_ms_text.png (dated state map and statewide comparison).</description>
+      <guid isPermaLink="false">union-county-drought-november-24-2026</guid>
+      <source url="https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28145&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1">U.S. Drought Monitor</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/union-county-drought-november-24-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Union County voters choose between Adams and Byers in Dec. 1 judicial runoff</title>
       <link>https://www.sos.ms.gov/news/election-day-reminders-2026-general-runoff-election</link>
       <pubDate>Wed, 25 Nov 2026 03:58:07 GMT</pubDate>

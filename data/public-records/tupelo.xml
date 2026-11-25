@@ -1,9 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0">
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
     <title>Mississippi News Group public records desk</title>
     <link>https://www.tva.com/learn/stem-awards</link>
     <description>Verified local entries from the TVA STEM classroom award roster.</description>
+    <item>
+      <title>Extreme drought covers nearly two-thirds of Lee County in Nov. 24 assessment</title>
+      <link>https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28081&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1</link>
+      <pubDate>Wed, 25 Nov 2026 19:05:02 GMT</pubDate>
+      <description>All of Lee County, including Tupelo, was in severe drought or worse in the November 24 assessment. Extreme drought or worse covered 65.35% of the county, including 1.28% in exceptional drought, the highest category. Two weeks earlier 39.58% was in extreme drought or worse and none was exceptional. The latest percentages matched November 17. These are county area shares, not a reading for every Tupelo household. The percentages are shares of land area. Categories in the U.S. Drought Monitor table are cumulative; the more severe categories are included in the less severe ones. The national map is dated Tuesday, November 24, before Wednesday’s weather. The map does not measure subsequent rainfall. Statewide, extreme drought or worse covered 66.91% of Mississippi on November 24, up from 53.56% the week before. Sources: https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28081&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1 (county area percentages for November 10, 17 and 24); https://droughtmonitor.unl.edu/data/png/20261124/20261124_ms_text.png (dated state map and statewide comparison).</description>
+      <guid isPermaLink="false">lee-county-drought-november-24-2026</guid>
+      <source url="https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28081&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1">U.S. Drought Monitor</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/lee-county-drought-november-24-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
     <item>
       <title>Tupelo career center, Saltillo High and Mooreville Middle appear on TVA's STEM awards list</title>
       <link>https://www.tva.com/the-powerhouse/stories/tva-awards--1.5-million-to-support-stem-education-across-the-valley_edu</link>
