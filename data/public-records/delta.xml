@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+  <channel>
+    <title>Mississippi Delta verified public records</title>
+    <link>https://mississippideltareport.com/</link>
+    <description>Local reporting from public records with links to original sources in the Mississippi Delta.</description>
+    <item>
+      <title>Washington County unemployment rises to 5.1% as Bolivar adds workers and reaches 4.4%</title>
+      <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
+      <pubDate>Thu, 26 Nov 2026 04:19:57 GMT</pubDate>
+      <description>Unemployment rose in neighboring Washington and Bolivar counties in October, even as the counties’ employment totals moved in different directions. The Mississippi Department of Employment Security issued its preliminary October figures and revised September comparisons in its November 24 release. County figures count residents and are not seasonally adjusted. In Washington County, which includes Greenville, 784 residents in the labor force were unemployed in October, up from 713 in September. Employment fell from 14,832 to 14,711, a decline of 121. The labor force shrank by 50 to 15,495. The unemployment rate rose half a percentage point from 4.6% to 5.1%. Bolivar County, which includes Cleveland, added 43 employed residents, bringing the total to 10,104 from 10,061. Its labor force grew by 66, from 10,500 to 10,566. That left 462 unemployed residents, 23 more than September’s 439. Its unemployment rate rose from 4.2% to 4.4%. Mississippi’s comparable unadjusted unemployment rate rose from 3.3% in September to 3.6% in October. Washington County was 1.5 percentage points above the state figure, and Bolivar County was 0.8 percentage points above it. The county statistics describe the labor-force status of residents and do not count job openings. MDES monthly labor market report, October 2026: https://mdes.ms.gov/media/23357/labormarketdata.pdf . Separate county unemployment rate history: https://mdes.ms.gov/media/8735/urate.pdf .</description>
+      <guid isPermaLink="false">washington-bolivar-october-labor-force-2026</guid>
+      <source url="https://mdes.ms.gov/media/23357/labormarketdata.pdf">Mississippi Department of Employment Security</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/washington-bolivar-october-labor-force-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+  </channel>
+</rss>
