@@ -5,6 +5,24 @@
     <link>https://www.tva.com/learn/stem-awards</link>
     <description>Verified local entries from the TVA STEM classroom award roster.</description>
     <item>
+      <title>Tupelo had 59 more unemployed residents in October as the city’s labor force shrank</title>
+      <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
+      <pubDate>Thu, 26 Nov 2026 19:04:08 GMT</pubDate>
+      <description>The number of Tupelo residents counted as unemployed rose to 596 in October from 537 in September, a gain of 59. Tupelo’s unemployment rate increased from 3.1% to 3.5%, according to the Mississippi Department of Employment Security. The October city estimates are preliminary and the September figures are revised. These figures are not seasonally adjusted. Employment among Tupelo residents fell by 144, from 16,779 in September to 16,635 in October. The city’s labor force, which includes employed and unemployed residents, declined by 85 to 17,231. That combination explains why unemployment rose even as fewer residents were in the labor force. Lee County, which includes Tupelo, saw its jobless rate climb from 3.0% to 3.4% over the same month. The county figures include the city, so the two counts should not be added. The county recorded 1,261 unemployed residents, up from 1,129. County employment fell from 36,220 to 35,909. The city estimates describe residents of Tupelo. They do not count positions at all businesses located inside the city. Source: Mississippi Department of Employment Security, preliminary October 2026 and revised September 2026 city and county labor-force tables: https://mdes.ms.gov/media/23357/labormarketdata.pdf .</description>
+      <guid isPermaLink="false">tupelo-city-labor-force-october-2026</guid>
+      <source url="https://mdes.ms.gov/media/23357/labormarketdata.pdf">Mississippi Department of Employment Security, October labor market report</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/tupelo-city-labor-force-october-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
+      <title>Tupelo orientation for December high school graduates closes registration Monday</title>
+      <link>https://www.iccms.edu/news/icc-opens-registration-for-december-2026-graduate-orientation</link>
+      <pubDate>Thu, 26 Nov 2026 19:04:08 GMT</pubDate>
+      <description>The Tupelo campus of Itawamba Community College will host December high school graduates on Wednesday, Dec. 2, at 1 p.m. The live sign-up table lists Monday, Nov. 30, as the final registration date for this free session for incoming spring students. It takes place in the Academic and Student Center at 2176 South Eason Blvd. in Tupelo. ICC requires orientation for high school seniors who graduate this December and plan to start college in January. Students may choose Tupelo even if they expect to take classes at the Fulton campus. A second session is at 1 p.m. Thursday, Dec. 3, at the W.O. Benjamin Fine Arts Center in Fulton. Its registration also ends Nov. 30. Both dates were checked on the live registration form on Nov. 26 against the college’s Nov. 4 announcement. Applicants must apply for admission before registering for orientation. Students can arrange a spring class schedule and take their college ID photo during the visit. Parents or guardians can attend. The college encourages students to send ACT scores before orientation. Students changing an existing reservation can use the code in their confirmation email. The orientation office answers questions at orientation@iccms.edu. ICC announcement: https://www.iccms.edu/news/icc-opens-registration-for-december-2026-graduate-orientation . Official sign-up and session details: https://www.iccms.edu/Admissions/Orientation-at-ICC/Orientation-Registration . Admission and orientation instructions: https://www.iccms.edu/Orientation .</description>
+      <guid isPermaLink="false">tupelo-icc-early-graduate-orientation-november-30-2026</guid>
+      <source url="https://www.iccms.edu/news/icc-opens-registration-for-december-2026-graduate-orientation">Itawamba Community College, dated announcement and live registration form</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/tupelo-icc-early-graduate-orientation-november-30-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Extreme drought covers nearly two-thirds of Lee County in Nov. 24 assessment</title>
       <link>https://usdmdataservices.unl.edu/api/CountyStatistics/GetDroughtSeverityStatisticsByAreaPercent?aoi=28081&amp;startdate=11/10/2026&amp;enddate=11/24/2026&amp;statisticsType=1</link>
       <pubDate>Wed, 25 Nov 2026 19:05:02 GMT</pubDate>
