@@ -5,6 +5,15 @@
     <link>https://unionnewsms.com/</link>
     <description>Verified public records for Union County, Mississippi, with original sources for each item.</description>
     <item>
+      <title>Thanksgiving turns windy in New Albany, with rain possible and upper 30s for downtown shopping</title>
+      <link>https://api.weather.gov/gridpoints/MEG/81,39/forecast/hourly</link>
+      <pubDate>Thu, 26 Nov 2026 04:08:24 GMT</pubDate>
+      <description>The National Weather Service changed its Thanksgiving outlook for New Albany in Union County. Wednesday evening’s forecast now calls for a cloudy Thursday, a 40% chance of rain, a high near 44 degrees Fahrenheit and west-northwest gusts up to 30 mph. Monday’s local forecast had called for clearing and a high near 49. The November 25 forecast was updated at 5:15 p.m. Central. The forecast has an 80% chance of rain Wednesday night with a quarter to half an inch possible. On Thanksgiving Day the expected amount is less than a tenth of an inch. Sustained west-northwest winds of 15 to 20 mph are expected Thursday. For downtown New Albany, where the New Albany Main Street Association lists its Turkey to Tinsel shopping event on November 26, the hourly forecast puts Thursday at 39 degrees at 8 p.m. with wind near 15 mph. By 10 p.m., it calls for 37 degrees with wind near 10 mph. These are forecasts for the city, not observed temperatures. The weather service puts the overnight low near 30 Thursday night and near 29 Friday night. Friday is expected to be sunny with a high near 54. The weather service forecast is for New Albany itself. No snow is forecast for the city in those periods. National Weather Service hourly forecast: https://api.weather.gov/gridpoints/MEG/81,39/forecast/hourly . NWS day and night forecast: https://api.weather.gov/gridpoints/MEG/81,39/forecast . Official downtown event listing: https://www.newalbanymainstreet.com/events .</description>
+      <guid isPermaLink="false">new-albany-thanksgiving-wind-evening-nov26-2026</guid>
+      <source url="https://api.weather.gov/gridpoints/MEG/81,39/forecast/hourly">National Weather Service Memphis and New Albany Main Street Association</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/new-albany-thanksgiving-wind-evening-nov26-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>New Albany and Union County students finish the fall term on different days</title>
       <link>https://www.newalbanyschools.us/PDF/calendar27.pdf</link>
       <pubDate>Wed, 25 Nov 2026 19:05:02 GMT</pubDate>
