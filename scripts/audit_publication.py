@@ -87,6 +87,8 @@ def review_posts(rows):
             flags.append("affiliate shopping")
         if not text or not normalized:
             flags.append("empty title or body")
+        if normalized == "null" or body_words in {"null", "null source original article"}:
+            flags.append("placeholder title or body")
         if normalized in titles:
             flags.append("repeated headline")
         if body_words and body_words == normalized:

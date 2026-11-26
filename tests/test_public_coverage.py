@@ -7,6 +7,16 @@ from audit_publication import review_posts
 
 
 class PublicCoverageTests(unittest.TestCase):
+    def test_literal_null_with_source_credit_is_not_a_news_story(self):
+        posts = review_posts([
+            ("null", "/placeholder", '<p>null</p><p><em>Source: <a href="/feed">Original Article</a></em></p>'),
+            ("Road update", "/empty-body", "<p>Null.</p>"),
+            ("Court declares vote null", "/article", "The court declared the November vote null."),
+        ])
+        self.assertIn("placeholder title or body", posts[0]["exclusions"])
+        self.assertIn("placeholder title or body", posts[1]["exclusions"])
+        self.assertEqual(posts[2]["exclusions"], [])
+
     def test_duplicate_body_title_only_and_short_service_notice(self):
         posts = review_posts([
             ("Road closure", "/original", "<p>Oak Street closes at noon for water repairs.</p>"),
