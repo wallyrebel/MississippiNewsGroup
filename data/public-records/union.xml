@@ -5,6 +5,15 @@
     <link>https://unionnewsms.com/</link>
     <description>Verified public records for Union County, Mississippi, with original sources for each item.</description>
     <item>
+      <title>New Albany forecast puts storms on Sunday and a dry, colder day ahead of Monday’s parade</title>
+      <link>https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39</link>
+      <pubDate>Fri, 27 Nov 2026 19:04:25 GMT</pubDate>
+      <description>New Albany’s Thanksgiving travelers and Christmas parade spectators face two different forecasts. In its Friday midday update, the National Weather Service put the chance of precipitation at 100% in New Albany on Sunday, Nov. 29. Monday, the day of the downtown Christmas parade, is forecast to be sunny with a high near 56.         Saturday is forecast to be sunny with a high near 64. The rain chance rises to 60% Saturday night, with showers likely after 4 a.m. Sunday. The weather service calls for showers and thunderstorms on Sunday, west-southwest winds of 15 to 20 mph and gusts up to 30 mph. Temperatures could fall from about 64 to around 52 in the afternoon.         Sunday night turns partly cloudy with a low near 31. The forecast puts Monday afternoon near 50 and Monday night’s low around 32. Those are afternoon and overnight figures, not a prediction of the temperature exactly at the 6:30 p.m. parade start. New Albany Main Street schedules the parade for Monday, Nov. 30, downtown. Check the point forecast again before leaving for the route. Sources: https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39 . https://api.weather.gov/gridpoints/MEG/81,39/forecast . https://www.newalbanymainstreet.com/2026parade .</description>
+      <guid isPermaLink="false">new-albany-sunday-storms-monday-parade-forecast-nov27-2026</guid>
+      <source url="https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39">National Weather Service Memphis and New Albany Main Street Association</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/new-albany-sunday-storms-monday-parade-forecast-nov27-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Union County retail pay rose as store job counts stayed close to the prior Christmas</title>
       <link>https://data.bls.gov/cew/data/api/2025/4/area/28145.csv</link>
       <pubDate>Fri, 27 Nov 2026 18:56:12 GMT</pubDate>

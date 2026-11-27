@@ -5,6 +5,15 @@
     <link>https://prentissnews.com/</link>
     <description>Verified public records for Prentiss County, Mississippi, with the original authority identified on each item.</description>
     <item>
+      <title>Booneville’s Sunday forecast brings storms, gusts to 30 mph and a near-freezing night</title>
+      <link>https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39</link>
+      <pubDate>Fri, 27 Nov 2026 19:04:25 GMT</pubDate>
+      <description>The warmest part of Sunday may come before travelers have finished the trip home to Booneville. The National Weather Service’s Friday midday forecast calls for a high near 64 on Nov. 29, with temperatures falling to around 52 in the afternoon and 32 overnight. The daytime precipitation chance at Booneville is 100%.         Saturday offers a mostly sunny break, with a high near 62. Showers are likely after 4 a.m. Sunday. The chance of precipitation in the Saturday-night forecast is 60%, with south winds of 10 to 15 mph and gusts as high as 30 mph.         On Sunday, forecasters expect showers and thunderstorms with southwest winds around 20 mph. The point forecast calls for a tenth to a quarter of an inch of new rain during the day. The percentage is the chance of precipitation at Booneville. It does not give the probability of a severe storm.         Sunday night should turn partly cloudy as the wind shifts to the northwest. Gusts could reach 25 mph, and the low is forecast near freezing. Monday looks sunny with a high near 55. Conditions elsewhere along a holiday route can differ from the forecast for Booneville. Sources: https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39 . https://api.weather.gov/gridpoints/MEG/97,47/forecast .</description>
+      <guid isPermaLink="false">booneville-return-travel-sunday-rain-freezing-night-november-27</guid>
+      <source url="https://api.weather.gov/products/3b3995a8-6421-4554-98d6-ed4d7aa25e39">National Weather Service Memphis</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/booneville-return-travel-sunday-rain-freezing-night-november-27.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Prentiss County added 53 retail jobs from one holiday season to the next</title>
       <link>https://data.bls.gov/cew/data/api/2025/4/area/28117.csv</link>
       <pubDate>Fri, 27 Nov 2026 18:56:31 GMT</pubDate>
