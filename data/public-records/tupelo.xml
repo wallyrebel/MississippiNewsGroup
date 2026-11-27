@@ -5,6 +5,15 @@
     <link>https://www.tva.com/learn/stem-awards</link>
     <description>Verified local entries from the TVA STEM classroom award roster.</description>
     <item>
+      <title>Lee County retail added 174 jobs through last fall but finished below the previous December</title>
+      <link>https://data.bls.gov/cew/data/api/2025/4/area/28081.csv</link>
+      <pubDate>Fri, 27 Nov 2026 18:56:12 GMT</pubDate>
+      <description>Stores in Lee County added 174 payroll jobs between October and December 2025, yet finished that holiday season with 134 fewer jobs than a year earlier. The difference matters for readers in Tupelo ahead of Small Business Saturday on Nov. 28. A busy season can lift employment over the fall even when the year-over-year count goes the other way. The Bureau of Labor Statistics counted 6,762 retail jobs in Lee County in October 2025, 6,859 in November and 6,936 in December. December 2024 had 7,070. The later December accounted for roughly 14.5% of all 47,860 private jobs at workplaces in the county. The number of retail establishments was nearly unchanged. Lee County had 523 in the final quarter of 2025, up from 522 in the same quarter of 2024. Average weekly pay for retail work rose from $659 to $703. After the holiday quarter, the January 2026 count stood at 6,560. February brought 6,562 jobs and March 6,469. The figures include small shops and large chains throughout Lee County. They count jobs where the work takes place and do not measure retail sales or this November’s hiring. Source records from the Bureau of Labor Statistics Quarterly Census of Employment and Wages. Lee County 2025q4 county payroll record: https://data.bls.gov/cew/data/api/2025/4/area/28081.csv . Lee County 2024q4 county payroll record: https://data.bls.gov/cew/data/api/2024/4/area/28081.csv . Lee County 2026q1 county payroll record: https://data.bls.gov/cew/data/api/2026/1/area/28081.csv . Small Business Saturday date: https://legacy.sba.gov/article/2026/11/19/sba-encourages-americans-shop-smallr-small-business-saturdayr-november-28 .</description>
+      <guid isPermaLink="false">tupelo-holiday-retail-payrolls-december-2025-nov27-2026</guid>
+      <source url="https://data.bls.gov/cew/data/api/2025/4/area/28081.csv">U.S. Bureau of Labor Statistics and U.S. Small Business Administration</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/tupelo-holiday-retail-payrolls-december-2025-nov27-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Tupelo had 59 more unemployed residents in October as the city’s labor force shrank</title>
       <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
       <pubDate>Thu, 26 Nov 2026 19:04:08 GMT</pubDate>

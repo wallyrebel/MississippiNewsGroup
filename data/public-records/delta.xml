@@ -5,6 +5,15 @@
     <link>https://mississippideltareport.com/</link>
     <description>Local reporting from public records with links to original sources in the Mississippi Delta.</description>
     <item>
+      <title>Leflore gained 30 retail jobs as Washington County lost 29 last December</title>
+      <link>https://data.bls.gov/cew/data/api/2025/4/area/28151.csv</link>
+      <pubDate>Fri, 27 Nov 2026 18:56:31 GMT</pubDate>
+      <description>Washington and Leflore counties finished December 2025 with a combined 3,481 retail jobs, just one more than a year earlier. That near tie conceals different changes in two Delta shopping markets. Washington County, home to Greenville, lost 29 retail jobs over the year. Leflore County, home to Greenwood, gained 30. Washington County counted 2,035 retail payroll jobs last December, down from 2,064 in December 2024. Leflore County went from 1,416 to 1,446. In the final quarter of 2025, Washington County had 183 retail workplaces and Leflore County had 136. Those establishment counts were down from 185 and 144, respectively, the year before. Average weekly retail pay rose in both counties. In Washington County, the fourth-quarter average rose from $558 to $604. In Leflore County it rose from $623 to $649. The averages cover all private retail jobs in each county, including those at chain stores and independent shops. Ahead of Small Business Saturday on Nov. 28, the figures supply a baseline for two counties, rather than an estimate for the whole Delta. They track jobs at local workplaces. They cannot say which merchants saw sales rise or how many people shopped in Greenville or Greenwood. Source records from the Bureau of Labor Statistics Quarterly Census of Employment and Wages. Washington County 2025q4 county payroll record: https://data.bls.gov/cew/data/api/2025/4/area/28151.csv . Washington County 2024q4 county payroll record: https://data.bls.gov/cew/data/api/2024/4/area/28151.csv . Leflore County 2025q4 county payroll record: https://data.bls.gov/cew/data/api/2025/4/area/28083.csv . Leflore County 2024q4 county payroll record: https://data.bls.gov/cew/data/api/2024/4/area/28083.csv . Small Business Saturday date: https://legacy.sba.gov/article/2026/11/19/sba-encourages-americans-shop-smallr-small-business-saturdayr-november-28 .</description>
+      <guid isPermaLink="false">delta-holiday-retail-payrolls-december-2025-nov27-2026</guid>
+      <source url="https://data.bls.gov/cew/data/api/2025/4/area/28151.csv">U.S. Bureau of Labor Statistics and U.S. Small Business Administration</source>
+      <media:content url="https://raw.githubusercontent.com/wallyrebel/MississippiNewsGroup/main/data/public-records/delta-holiday-retail-payrolls-december-2025-nov27-2026.png" type="image/png" medium="image" width="1440" height="810" />
+    </item>
+    <item>
       <title>Washington County unemployment rises to 5.1% as Bolivar adds workers and reaches 4.4%</title>
       <link>https://mdes.ms.gov/media/23357/labormarketdata.pdf</link>
       <pubDate>Thu, 26 Nov 2026 04:19:57 GMT</pubDate>
